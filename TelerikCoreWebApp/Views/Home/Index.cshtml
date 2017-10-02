@@ -1,8 +1,9 @@
-﻿@{
+﻿@using Kendo.Mvc.UI.Fluent
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
+@*<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -105,4 +106,30 @@
             <li><a href="https://go.microsoft.com/fwlink/?LinkID=398609">Publish to Microsoft Azure Web Apps</a></li>
         </ul>
     </div>
+</div>*@
+
+<h2>Kendo UI DatePicker</h2>
+@(Html.Kendo().DatePicker().Name("datepicker"))
+
+<div>
+    <button id="button1" class="btn btn-primary" style="margin: 10px;">Open PopupWindow1</button>
 </div>
+
+@{
+    @(Html.Kendo().Window()
+          .Name("popupWindow1")
+          .Title("Popup Window1")
+          .Content(@<text>
+                       <h1>Popup Window1</h1>
+                    </text>)
+          .Draggable()
+          .Width(600)
+          .Height(300)
+          .Position(settings => settings.Top(200).Left(600))
+          .Resizable(settings => settings.MaxHeight(700).MaxWidth(700))
+          .Modal(false)
+          .Visible(false)
+          .Iframe(true)
+          .Actions(actions => actions.Pin().Minimize().Maximize().Close()))
+}
+
