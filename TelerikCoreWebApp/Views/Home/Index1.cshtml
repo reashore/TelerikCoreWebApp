@@ -7,9 +7,15 @@
 
 <h1>Index1 Page</h1>
 
-<form action="/Home/Index1" method="post">
-    <p>First Name: @Html.TextBoxFor(x => x.FirstName)</p>
-    <p>Last Name: @Html.TextBoxFor(x => x.LastName)</p>
+<form asp-action="Index1" asp-controller="Home" method="post">
+    <div class="form-group">
+        <label asp-for="FirstName">First Name:</label>
+        <input class="form-control" asp-for="FirstName"/>
+    </div>
+    <div class="form-group">
+        <label asp-for="LastName">First Name:</label>
+        <input class="form-control" asp-for="LastName"/>
+    </div>
 
-    <input type="submit" value="Submit" />
+    <button type="submit" class="btn btn-primary">Submit</button>
 </form>
