@@ -1,5 +1,3 @@
-using System;
-
 namespace TelerikCoreWebApp.Models
 {
     public class ErrorViewModel

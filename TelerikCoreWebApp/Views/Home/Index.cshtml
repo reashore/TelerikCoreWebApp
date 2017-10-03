@@ -1,28 +1,114 @@
 ﻿
-@{
-    ViewData["Title"] = "Home Page";
+@using Kendo.Mvc.UI
+@using TelerikCoreWebApp.Helpers
+
+@section Styles
+{
+    <link href="~/css/index.css" rel="stylesheet" />
 }
 
-<h2>Kendo UI DatePicker</h2>
-@(Html.Kendo().DatePicker().Name("datepicker"))
+@{
+    ViewBag.Title = "Window Demo Page";
 
-<div>
-    <button id="button1" class="btn btn-primary" style="margin: 10px;">Open PopupWindow1</button>
-</div>
+    const int numberItems = 6;
 
-@(Html.Kendo().Window()
-    .Name("popupWindow1")
-    .Title("Popup Window1")
-    .Content(
-        @<text>
-        <h1>Popup Window1</h1>
-        </text>)
-    .Draggable()
-    .Width(600)
-    .Height(300)
-    .Position(settings => settings.Top(200).Left(600))
-    .Resizable(settings => settings.MaxHeight(700).MaxWidth(700))
-    .Modal(false)
-    .Visible(false)
-    .Iframe(true)
-    .Actions(actions => actions.Pin().Minimize().Maximize().Close()))
+    <div id="megaStore">
+        @(Html.Kendo().Menu().Name("MenuBar").Items(items =>
+          {
+              items.Add().Text("Menu1").Items(children =>
+              {
+                  children.Add().Text("Menu1 Item1");
+                  children.Add().Text("Menu1 Item2").Action("Index1", "Home");
+                  children.Add().Text("Menu1 Item3");
+              });
+
+              items.Add().Text("Menu2").Items(children =>
+              {
+                  children.Add().Text("Menu2 Item1");
+                  children.Add().Text("Menu2 Item2");
+                  children.Add().Text("Menu2 Item3");
+              });
+
+              items.Add().Text("Menu3").Items(children =>
+              {
+                  children.Add().Text("Menu3 Item1");
+                  children.Add().Text("Menu3 Item2");
+                  children.Add().Text("Menu3 Item3");
+              });
+
+              items.Add().Text("Window").Items(children =>
+              {
+                  children.Add().Text("Close All Windows");
+                  children.Add().Text("Arrange Windows");
+                  children.Add().Separator(true);
+                  children.Add().Text("Window Item1");
+                  children.Add().Text("Window Item2");
+                  children.Add().Text("Window Item3");
+              });
+          })
+          .Events(e => e.Select("selectMenuItem"))
+        )
+    </div>
+
+    <div class="jumbotron">
+        <h1>MDI Demo</h1>
+    </div>
+
+    for (int n = 1; n <= numberItems; n++)
+    {
+        string menuButtonId = "menuItem" + n;
+        string menuButtonText = "Open Popup Window" + n;
+
+        <div>
+            <button id="@menuButtonId" class="btn btn-primary" style="margin: 10px;">@menuButtonText</button>
+        </div>
+    }
+
+    for (int n = 1; n <= numberItems; n++)
+    {
+        PopupWindow popupWindow = PopupHelper.GetPopupWindowSettings(n);
+
+        @(Html.Kendo().Window()
+              .Name(popupWindow.Name)
+              .Title(popupWindow.Title)
+              .LoadContentFrom(popupWindow.Action, popupWindow.Controller)
+              .Draggable()
+              .Width(popupWindow.Width)
+              .Height(popupWindow.Height)
+              .Position(settings => settings.Top(popupWindow.Top).Left(popupWindow.Left))
+              .Resizable(settings => settings.MaxHeight(popupWindow.MaxWidth).MaxWidth(popupWindow.MaxHeight))
+              .Modal(false)
+              .Visible(false)
+              .Iframe(true)
+              .Events(events => events
+                  .Open("onOpen")
+                  .Activate("onActivate")
+                  .Refresh("onRefresh")
+                  .Resize("onResize")
+                  .DragStart("onDragStart")
+                  .DragEnd("onDragEnd")
+                  .Deactivate("onDeactivate")
+                  .Minimize("onMinimize")
+                  .Maximize("onMaximize")
+                  .Close(popupWindow.OnClose))
+              .Actions(actions => actions.Pin().Minimize().Maximize().Close()))
+    }
+
+    <div class="k-content">
+        @(Html.Kendo().ToolBar().Name("ToolBar").Items(items =>
+        {
+            for (int n = 1; n <= numberItems; n++)
+            {
+                string statusBarButtonText = "Popup Window" + n;
+                string statusBarButtonId = "statusBarButton" + n;
+
+                items.Add().Type(CommandType.Button).Text(statusBarButtonText).Id(statusBarButtonId);
+            }
+        }))
+    </div>
+}
+
+@section Scripts
+{
+    <script src="~/js/index.js"></script>
+}

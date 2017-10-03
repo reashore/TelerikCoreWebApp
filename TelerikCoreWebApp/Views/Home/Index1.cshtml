@@ -1,0 +1,15 @@
+﻿
+@model UserViewModel
+
+@{
+    ViewBag.Title = "Window Demo Page";
+}
+
+<h1>Index1 Page</h1>
+
+<form action="/Home/Index1" method="post">
+    <p>First Name: @Html.TextBoxFor(x => x.FirstName)</p>
+    <p>Last Name: @Html.TextBoxFor(x => x.LastName)</p>
+
+    <input type="submit" value="Submit" />
+</form>

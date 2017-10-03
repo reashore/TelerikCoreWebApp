@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using TelerikCoreWebApp.Models;
 
@@ -10,21 +6,74 @@ namespace TelerikCoreWebApp.Controllers
 {
     public class HomeController : Controller
     {
+        [HttpGet]
         public IActionResult Index()
         {
-            return View();
-        }
-
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
+            ViewBag.Message = "Welcome to ASP.NET MVC!";
 
             return View();
         }
 
-        public IActionResult Contact()
+        [HttpGet]
+        public IActionResult Index1()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewBag.Message = "Index1 Page";
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Index1(UserViewModel userViewModel)
+        {
+            ViewBag.Message = "Index1 Page";
+
+            return RedirectToAction("DisplayUserInfo", "Home", userViewModel);
+        }
+
+        [HttpGet]
+        public IActionResult DisplayUserInfo(UserViewModel userViewModel)
+        {
+            ViewBag.Message = "DisplayUserInfo Page";
+
+            return View(userViewModel);
+        }
+
+        [HttpGet]
+        public IActionResult Index2()
+        {
+            ViewBag.Message = "Index2 Page";
+
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Index3()
+        {
+            ViewBag.Message = "Index2 Page";
+
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Index4()
+        {
+            ViewBag.Message = "Index2 Page";
+
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Index5()
+        {
+            ViewBag.Message = "Index2 Page";
+
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Index6()
+        {
+            ViewBag.Message = "Index2 Page";
 
             return View();
         }
