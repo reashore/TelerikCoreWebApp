@@ -1,7 +1,4 @@
 ﻿
-@using Kendo.Mvc.UI
-@using TelerikCoreWebApp.Helpers
-
 @section Styles
 {
     <link href="~/css/index.css" rel="stylesheet" />
@@ -18,7 +15,7 @@
               items.Add().Text("Menu1").Items(children =>
               {
                   children.Add().Text("Menu1 Item1");
-                  children.Add().Text("Menu1 Item2").Action("Index1", "Home");
+                  children.Add().Text("Menu1 Item2");
                   children.Add().Text("Menu1 Item3");
               });
 
@@ -51,7 +48,7 @@
     </div>
 
     <div class="jumbotron">
-        <h1>MDI Demo</h1>
+        <h1>ASP.Net MVC Core 2.0 MDI Demo</h1>
     </div>
 
     for (int n = 1; n <= numberItems; n++)
@@ -110,5 +107,6 @@
 
 @section Scripts
 {
+    <script src="~/js/menuItems.js"></script>
     <script src="~/js/index.js"></script>
 }
