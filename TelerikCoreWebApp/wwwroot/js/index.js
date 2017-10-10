@@ -1,6 +1,5 @@
 ﻿"use strict";
 
-
 var popupWindowArray = [];
 var popupWindowInUseArray = [];
 
@@ -62,101 +61,146 @@ var defaultPopupWindowConfiguration = {
 
 //-----------------------------------------------------
 
-var popupWindow0Configuration = {
-    title: "Popup Window0",
+var popupWindow10Configuration = {
+    title: "Popup Window10",
     content: "/Work1/Index0"
 };
 
-var popupWindow1Configuration = {
-    title: "Popup Window1",
+var popupWindow11Configuration = {
+    title: "Popup Window11",
     content: "/Work1/Index1"
 };
 
-var popupWindow2Configuration = {
-    title: "Popup Window2",
+var popupWindow12Configuration = {
+    title: "Popup Window12",
     content: "/Work1/Index2"
 };
 
-var popupWindow3Configuration = {
-    title: "Popup Window3",
+var popupWindow13Configuration = {
+    title: "Popup Window13",
     content: "/Work1/Index3"
 };
 
-var popupWindow4Configuration = {
-    title: "Popup Window4",
+var popupWindow14Configuration = {
+    title: "Popup Window14",
     content: "/Work1/Index4"
 };
 
-var popupWindow5Configuration = {
-    title: "Popup Window5",
+var popupWindow15Configuration = {
+    title: "Popup Window15",
     content: "/Work1/Index5"
 };
 
-// may be out of range
-var popupWindow6Configuration = {
-    title: "Popup Window6",
+var popupWindow16Configuration = {
+    title: "Popup Window16",
     content: "/Work1/Index6"
 };
 
 //-----------------------------------------------------
 
+var popupWindow20Configuration = {
+    title: "Popup Window20",
+    content: "/Work2/Index0"
+};
+
+var popupWindow21Configuration = {
+    title: "Popup Window21",
+    content: "/Work2/Index1"
+};
+
+var popupWindow22Configuration = {
+    title: "Popup Window22",
+    content: "/Work2/Index2"
+};
+
+var popupWindow23Configuration = {
+    title: "Popup Window23",
+    content: "/Work2/Index3"
+};
+
+var popupWindow24Configuration = {
+    title: "Popup Window24",
+    content: "/Work2/Index4"
+};
+
+var popupWindow25Configuration = {
+    title: "Popup Window25",
+    content: "/Work2/Index5"
+};
+
+var popupWindow26Configuration = {
+    title: "Popup Window26",
+    content: "/Work2/Index6"
+};
+
+//-----------------------------------------------------
+
 var getPopupWindowConfiguration = function (menuItemText) {
-    var popupWindowconfiguration = null;
+    var popupWindowConfiguration = null;
 
     switch(menuItemText) {
         case "Menu1 Item0":
-            popupWindowconfiguration = popupWindow0Configuration;
+            popupWindowConfiguration = popupWindow10Configuration;
             break;
 
         case "Menu1 Item1":
-            popupWindowconfiguration = popupWindow1Configuration;
+            popupWindowConfiguration = popupWindow11Configuration;
             break;
 
         case "Menu1 Item2":
-            popupWindowconfiguration = popupWindow2Configuration;
+            popupWindowConfiguration = popupWindow12Configuration;
             break;
 
         case "Menu1 Item3":
-            popupWindowconfiguration = popupWindow3Configuration;
+            popupWindowConfiguration = popupWindow13Configuration;
             break;
 
         case "Menu1 Item4":
-            popupWindowconfiguration = popupWindow3Configuration;
+            popupWindowConfiguration = popupWindow14Configuration;
             break;
 
         case "Menu1 Item5":
-            popupWindowconfiguration = popupWindow3Configuration;
+            popupWindowConfiguration = popupWindow15Configuration;
             break;
 
         case "Menu1 Item6":
-            popupWindowconfiguration = popupWindow3Configuration;
+            popupWindowConfiguration = popupWindow16Configuration;
             break;
 
-
-
-
-
+        //--------
 
         case "Menu2 Item0":
-            popupWindowconfiguration = popupWindow4Configuration;
+            popupWindowConfiguration = popupWindow20Configuration;
             break;
 
         case "Menu2 Item1":
-            popupWindowconfiguration = popupWindow4Configuration;
+            popupWindowConfiguration = popupWindow21Configuration;
             break;
 
         case "Menu2 Item2":
-            popupWindowconfiguration = popupWindow5Configuration;
+            popupWindowConfiguration = popupWindow22Configuration;
             break;
 
         case "Menu2 Item3":
-            popupWindowconfiguration = popupWindow6Configuration;
+            popupWindowConfiguration = popupWindow23Configuration;
+            break;
+
+        case "Menu2 Item4":
+            popupWindowConfiguration = popupWindow24Configuration;
+            break;
+
+        case "Menu2 Item5":
+            popupWindowConfiguration = popupWindow25Configuration;
+            break;
+
+        case "Menu2 Item6":
+            popupWindowConfiguration = popupWindow26Configuration;
             break;
     }
 
-    $.extend(popupWindow1Configuration, defaultPopupWindowConfiguration);
+    $.extend(popupWindowConfiguration, defaultPopupWindowConfiguration);
 
-    return popupWindowconfiguration;
+    return popupWindowConfiguration;
 };
 
 //-------------------------------------------------------------
@@ -172,9 +216,6 @@ var attachEventHandlers = function () {
     var numberItems = 6;
 
     for (var n = 0; n < numberItems; n++) {
-        //var menuItem = $("#menuItem" + n);
-        //menuItem.bind("click", n, onClickMenuItem);
-
         var $statusBarButton = $("#statusBarButton" + n);
         $statusBarButton.on("click", null, n, onClickStatusBarButton);
     }
@@ -183,29 +224,6 @@ var attachEventHandlers = function () {
 
 //-------------------------------------------------------------
 // Event Handlers
-
-//var onClickMenuItem = function (e) {
-//    var data = e.data;
-
-//    var menuItem = $("#menuItem" + data);
-//    menuItem.prop("disabled", true);
-
-//    var $popupWindow = $("#popupWindow" + data);
-//    $popupWindow.empty();
-//    var windowConfiguration = {
-//        title: "Popup Window New",
-//        resizable: true,
-//        width: 600,
-//        height: 400,
-//        maxHeight: 500,
-//        maxWidth: 500,
-//        content: { url: "/Home/Index2" }
-//    };
-//    var popupWindow = $popupWindow.kendoWindow(windowConfiguration);
-//    popupWindow = popupWindow.data("kendoWindow");
-//    $("#popupWindow1_wnd_title").text("New Popup Window1");
-//    popupWindow.open();
-//};
 
 var onClickStatusBarButton = function (e) {
     var data = e.data;
@@ -285,13 +303,10 @@ var onMaximize = function(e) {
 var popupWindowArray = [];
 
 $(document).ready(function () {
-    var numberItems = 6;
+    var numberItems = 12;
 
     attachEventHandlers();
     popupWindowArray = createPopupWindowArray(numberItems);
 
     console.log(popupWindowArray);
-
-
 });
-

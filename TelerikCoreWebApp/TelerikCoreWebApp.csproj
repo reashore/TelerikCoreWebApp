@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Work1\Index0.cshtml" />
+    <Content Remove="Views\Work1\Index2.cshtml" />
+    <Content Remove="Views\Work1\Index3.cshtml" />
+    <Content Remove="Views\Work1\Index4.cshtml" />
+    <Content Remove="Views\Work1\Index5.cshtml" />
+    <Content Remove="Views\Work1\Index6.cshtml" />
     <Content Remove="wwwroot\js\mdi.js" />
   </ItemGroup>
 

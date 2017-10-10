@@ -9,8 +9,6 @@ namespace TelerikCoreWebApp.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            //ViewBag.Message = "Welcome to ASP.NET MVC!";
-
             return View();
         }
 

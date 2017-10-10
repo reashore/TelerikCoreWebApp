@@ -1,8 +1,18 @@
 ﻿@model UserViewModel
 
-<div>
-    <h1>Display User Info Page</h1>
-    <p>@Model.FirstName</p>
-    <p>@Model.LastName</p>
-</div>
+<h1>User Info</h1>
+
+<table class="table table-bordered table-hover table-condensed">
+    <tbody>
+    <tr>
+        <td>First Name</td>
+        <td>@Model.FirstName</td>
+    </tr>
+    <tr>
+        <td>Last Name</td>
+        <td>@Model.LastName</td>
+    </tr>
+    </tbody>
+</table>
+
 
