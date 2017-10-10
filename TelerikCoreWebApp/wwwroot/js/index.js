@@ -1,30 +1,39 @@
 ﻿"use strict";
 
-//-----------------------------------------------------
-
-//var numberItems = 6;
-
-//var popupWindowIdArray = ["popupWindow1", "popupWindow2", "popupWindow3", "popupWindow4", "popupWindow5", "popupWindow6"];
-
-//var popupWindows = popupWindowIdArray.forEach(function(item) {
-//    $(item);
-//});
 
 var popupWindowArray = [];
+var popupWindowInUseArray = [];
 
-var createPopupWindowArray = function (numberItems) {
+var createPopupWindowArray = function(numberItems) {
     var popupWindowArray = [];
 
-    for (var n = 1; n <= numberItems; n++) {
+    for (var n = 0; n < numberItems; n++) {
         popupWindowArray.push($("#popupWindow" + n));
+        popupWindowInUseArray.push(true);
     }
 
     return popupWindowArray;
-}
+};
+
+var getIndexOfUnusedPopup = function (numberItems) {
+    var freeIndex;
+
+    // display warning if there is no free index
+
+    for (var n = 0; n < numberItems; n++) {
+        if (popupWindowInUseArray[n] === true) {
+            freeIndex = n;
+            break;
+        }
+    }
+
+    return freeIndex;
+};
 
 //-----------------------------------------------------
 
 var defaultPopupWindowConfiguration = {
+    inUse: false,
     position: {
         top: 200,
         left: 600
@@ -53,34 +62,40 @@ var defaultPopupWindowConfiguration = {
 
 //-----------------------------------------------------
 
+var popupWindow0Configuration = {
+    title: "Popup Window0",
+    content: "/Work1/Index0"
+};
+
 var popupWindow1Configuration = {
     title: "Popup Window1",
-    content: "/Home/Index1"
+    content: "/Work1/Index1"
 };
 
 var popupWindow2Configuration = {
     title: "Popup Window2",
-    content: "/Home/Index2"
+    content: "/Work1/Index2"
 };
 
 var popupWindow3Configuration = {
     title: "Popup Window3",
-    content: "/Home/Index3"
+    content: "/Work1/Index3"
 };
 
 var popupWindow4Configuration = {
     title: "Popup Window4",
-    content: "/Home/Index4"
+    content: "/Work1/Index4"
 };
 
 var popupWindow5Configuration = {
     title: "Popup Window5",
-    content: "/Home/Index5"
+    content: "/Work1/Index5"
 };
 
+// may be out of range
 var popupWindow6Configuration = {
     title: "Popup Window6",
-    content: "/Home/Index6"
+    content: "/Work1/Index6"
 };
 
 //-----------------------------------------------------
@@ -89,6 +104,10 @@ var getPopupWindowConfiguration = function (menuItemText) {
     var popupWindowconfiguration = null;
 
     switch(menuItemText) {
+        case "Menu1 Item0":
+            popupWindowconfiguration = popupWindow0Configuration;
+            break;
+
         case "Menu1 Item1":
             popupWindowconfiguration = popupWindow1Configuration;
             break;
@@ -99,6 +118,27 @@ var getPopupWindowConfiguration = function (menuItemText) {
 
         case "Menu1 Item3":
             popupWindowconfiguration = popupWindow3Configuration;
+            break;
+
+        case "Menu1 Item4":
+            popupWindowconfiguration = popupWindow3Configuration;
+            break;
+
+        case "Menu1 Item5":
+            popupWindowconfiguration = popupWindow3Configuration;
+            break;
+
+        case "Menu1 Item6":
+            popupWindowconfiguration = popupWindow3Configuration;
+            break;
+
+
+
+
+
+
+        case "Menu2 Item0":
+            popupWindowconfiguration = popupWindow4Configuration;
             break;
 
         case "Menu2 Item1":
@@ -112,38 +152,12 @@ var getPopupWindowConfiguration = function (menuItemText) {
         case "Menu2 Item3":
             popupWindowconfiguration = popupWindow6Configuration;
             break;
-
-        //case "Menu3 Item1":
-        //    popupWindowconfiguration = $.extend(popupWindow1Configuration, defaultPopupWindowConfiguration);
-        //    break;
-
-        //case "Menu3 Item2":
-        //    popupWindowconfiguration = $.extend(popupWindow1Configuration, defaultPopupWindowConfiguration);
-        //    break;
-
-        //case "Menu3 Item3":
-        //    popupWindowconfiguration = $.extend(popupWindow1Configuration, defaultPopupWindowConfiguration);
-        //    break;
     }
 
     $.extend(popupWindow1Configuration, defaultPopupWindowConfiguration);
 
     return popupWindowconfiguration;
 };
-
-//var popupWindowsConfiguration = {
-//    "Menu1 Item1": $.extend(popupWindow1Configuration, defaultPopupWindowConfiguration),
-//    "Menu1 Item2": $.extend(popupWindow1Configuration, defaultPopupWindowConfiguration),
-//    "Menu1 Item3": $.extend(popupWindow1Configuration, defaultPopupWindowConfiguration),
-
-//    "Menu2 Item1": $.extend(popupWindow1Configuration, defaultPopupWindowConfiguration),
-//    "Menu2 Item2": $.extend(popupWindow1Configuration, defaultPopupWindowConfiguration),
-//    "Menu2 Item3": $.extend(popupWindow1Configuration, defaultPopupWindowConfiguration),
-
-//    "Menu3 Item1": $.extend(popupWindow1Configuration, defaultPopupWindowConfiguration),
-//    "Menu3 Item2": $.extend(popupWindow1Configuration, defaultPopupWindowConfiguration),
-//    "Menu3 Item3": $.extend(popupWindow1Configuration, defaultPopupWindowConfiguration)
-//};
 
 //-------------------------------------------------------------
 // Functions
@@ -157,40 +171,41 @@ var extractNumericSuffix = function (value, prefix) {
 var attachEventHandlers = function () {
     var numberItems = 6;
 
-    for (var n = 1; n <= numberItems; n++) {
-        var menuItem = $("#menuItem" + n);
-        menuItem.bind("click", n, onClickMenuItem);
+    for (var n = 0; n < numberItems; n++) {
+        //var menuItem = $("#menuItem" + n);
+        //menuItem.bind("click", n, onClickMenuItem);
 
         var $statusBarButton = $("#statusBarButton" + n);
         $statusBarButton.on("click", null, n, onClickStatusBarButton);
     }
 };
 
+
 //-------------------------------------------------------------
 // Event Handlers
 
-var onClickMenuItem = function (e) {
-    var data = e.data;
+//var onClickMenuItem = function (e) {
+//    var data = e.data;
 
-    var menuItem = $("#menuItem" + data);
-    menuItem.prop("disabled", true);
+//    var menuItem = $("#menuItem" + data);
+//    menuItem.prop("disabled", true);
 
-    var $popupWindow = $("#popupWindow" + data);
-    $popupWindow.empty();
-    var windowConfiguration = {
-        title: "Popup Window New",
-        resizable: true,
-        width: 600,
-        height: 400,
-        maxHeight: 500,
-        maxWidth: 500,
-        content: { url: "/Home/Index2" }
-    };
-    var popupWindow = $popupWindow.kendoWindow(windowConfiguration);
-    popupWindow = popupWindow.data("kendoWindow");
-    $("#popupWindow1_wnd_title").text("New Popup Window1");
-    popupWindow.open();
-};
+//    var $popupWindow = $("#popupWindow" + data);
+//    $popupWindow.empty();
+//    var windowConfiguration = {
+//        title: "Popup Window New",
+//        resizable: true,
+//        width: 600,
+//        height: 400,
+//        maxHeight: 500,
+//        maxWidth: 500,
+//        content: { url: "/Home/Index2" }
+//    };
+//    var popupWindow = $popupWindow.kendoWindow(windowConfiguration);
+//    popupWindow = popupWindow.data("kendoWindow");
+//    $("#popupWindow1_wnd_title").text("New Popup Window1");
+//    popupWindow.open();
+//};
 
 var onClickStatusBarButton = function (e) {
     var data = e.data;
@@ -208,14 +223,25 @@ var onClosePopupWindow = function (e) {
 };
 
 var selectMenuItem = function (e) {
+    var numberItems = 6;
     var $item = $(e.item);
-    //var parent = $item.parent("span.k-link").text();
-    //console.log(parent);
     var menuItemText = $item.children(".k-link").text();
     console.log("Selected: " + menuItemText);
-
     var popupWindowConfiguration = getPopupWindowConfiguration(menuItemText);
-    console.log(popupWindowConfiguration);
+
+    // replace with code to get next free window
+    var freePopupIndex = getIndexOfUnusedPopup(numberItems);
+    console.log("FreePopupIndex = " + freePopupIndex);
+
+    var $popupWindow = $("#popupWindow" + freePopupIndex);
+
+    $popupWindow.empty();
+    var popupWindow = $popupWindow.kendoWindow(popupWindowConfiguration);
+    popupWindow = popupWindow.data("kendoWindow");
+    $("#popupWindow" + freePopupIndex + "_wnd_title").text(popupWindowConfiguration.title);
+    popupWindow.open();
+
+    popupWindowInUseArray[freePopupIndex] = false;
 };
 
 var onOpen = function(e) {
@@ -265,31 +291,7 @@ $(document).ready(function () {
     popupWindowArray = createPopupWindowArray(numberItems);
 
     console.log(popupWindowArray);
+
+
 });
 
-
-
-
-
-//var onClickMenuItem = function (e) {
-//    var data = e.data;
-//    var menuItem = $("#menuItem" + data);
-//    var popupWindow = $("#popupWindow" + data);
-
-//    //popupWindow.kendoWindow(
-//    //    {
-//    //        "title": "Popup Window New",
-//    //        "resizable": true,
-//    //        "width": 600,
-//    //        "height": 400,
-//    //        "maxHeight": 500,
-//    //        "maxWidth": 500,
-//    //        "content": { "url": "/Home/Index2" }
-//    //    }
-//    //);
-
-//    //popupWindow.set_title("My Title");
-
-//    popupWindow.data("kendoWindow").open();
-//    menuItem.prop("disabled", true);
-//};
