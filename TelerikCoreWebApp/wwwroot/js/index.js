@@ -15,7 +15,7 @@ var createPopupWindowArray = function(numberItems) {
 };
 
 var getIndexOfUnusedPopup = function (numberItems) {
-    var freeIndex;
+    var freeIndex = undefined;
 
     // display warning if there is no free index
 
@@ -47,16 +47,16 @@ var defaultPopupWindowConfiguration = {
     scrollable: true,
     visible: false,
     actions: ["Pin", "Refresh", "Minimize", "Maximize", "Close"],
-    open: onOpen,
-    activate: onActivate,
-    refresh: onRefresh,
-    resize: onResize,
-    dragstart: onDragStart,
-    dragend: onDragEnd,
-    deactivate: onDeactivate,
-    minimize: onMinimize,
-    maximize: onMaximize,
-    close: onClosePopupWindow
+    //open: onOpen,
+    //activate: onActivate,
+    //refresh: onRefresh,
+    //resize: onResize,
+    //dragstart: onDragStart,
+    //dragend: onDragEnd,
+    //deactivate: onDeactivate,
+    //minimize: onMinimize,
+    //maximize: onMaximize,
+    //close: onClosePopupWindow
 };
 
 //-----------------------------------------------------
@@ -221,24 +221,8 @@ var attachEventHandlers = function () {
     }
 };
 
-
 //-------------------------------------------------------------
 // Event Handlers
-
-var onClickStatusBarButton = function (e) {
-    var data = e.data;
-    var $popupWindow = $("#popupWindow" + data);
-    var popupWindow = $popupWindow.data("kendoWindow");
-    popupWindow.open();
-};
-
-var onClosePopupWindow = function (e) {
-    var id = e.sender.wrapper.context.id;
-    var prefix = "#popupWindow";
-    var index = extractNumericSuffix(id, prefix);
-    var $menuItem = $("#menuItem" + index);
-    $menuItem.prop("disabled", false);
-};
 
 var selectMenuItem = function (e) {
     var numberItems = 6;
@@ -262,40 +246,19 @@ var selectMenuItem = function (e) {
     popupWindowInUseArray[freePopupIndex] = false;
 };
 
-var onOpen = function(e) {
-    //console.log("onOpen");
+var onClickStatusBarButton = function (e) {
+    var data = e.data;
+    var $popupWindow = $("#popupWindow" + data);
+    var popupWindow = $popupWindow.data("kendoWindow");
+    popupWindow.open();
 };
 
-var onActivate = function(e) {
-    //console.log("onActivate");
-};
-
-var onRefresh = function(e) {
-    //console.log("onRefresh");
-};
-
-var onResize = function(e) {
-    //console.log("onResize");
-};
-
-var onDragStart = function(e) {
-    //console.log("onDragStart");
-};
-
-var onDragEnd = function(e) {
-    //console.log("onDragEnd");
-};
-
-var onDeactivate = function(e) {
-    //console.log("onDeactivate");
-};
-
-var onMinimize = function(e) {
-    //console.log("onMinimize");
-};
-
-var onMaximize = function(e) {
-    //console.log("onMaximize");
+var onClosePopupWindow = function (e) {
+    var id = e.sender.wrapper.context.id;
+    var prefix = "#popupWindow";
+    var index = extractNumericSuffix(id, prefix);
+    var $menuItem = $("#menuItem" + index);
+    $menuItem.prop("disabled", false);
 };
 
 //-------------------------------------------------------------
@@ -310,3 +273,41 @@ $(document).ready(function () {
 
     console.log(popupWindowArray);
 });
+
+//-------------------------------------------------------------                                                                                               
+
+//var onOpen = function (e) {
+//    console.log("onOpen");
+//};
+
+//var onActivate = function (e) {
+//    console.log("onActivate");
+//};
+
+//var onRefresh = function (e) {
+//    console.log("onRefresh");
+//};
+
+//var onResize = function (e) {
+//    console.log("onResize");
+//};
+
+//var onDragStart = function (e) {
+//    console.log("onDragStart");
+//};
+
+//var onDragEnd = function (e) {
+//    console.log("onDragEnd");
+//};
+
+//var onDeactivate = function (e) {
+//    console.log("onDeactivate");
+//};
+
+//var onMinimize = function (e) {
+//    console.log("onMinimize");
+//};
+
+//var onMaximize = function (e) {
+//    console.log("onMaximize");
+//};
