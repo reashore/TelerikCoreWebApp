@@ -46,7 +46,7 @@ var defaultPopupWindowConfiguration = {
     modal: false,
     scrollable: true,
     visible: false,
-    actions: ["Pin", "Refresh", "Minimize", "Maximize", "Close"],
+    actions: ["Pin", "Refresh", "Minimize", "Maximize", "Close"]
     //open: onOpen,
     //activate: onActivate,
     //refresh: onRefresh,
