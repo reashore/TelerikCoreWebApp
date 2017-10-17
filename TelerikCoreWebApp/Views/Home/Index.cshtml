@@ -39,6 +39,11 @@
                   children.Add().Text("Menu3 Item0");
               });
 
+              items.Add().Text("Program").Items(children =>
+              {
+                  children.Add().Text("Program Menu Item0");
+              });
+
               items.Add().Text("Window").Items(children =>
               {
                   children.Add().Text("Close All Windows");

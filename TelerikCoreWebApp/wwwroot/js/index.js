@@ -61,6 +61,8 @@ var defaultPopupWindowConfiguration = {
 
 //-----------------------------------------------------
 
+// todo Separate the controller and action
+
 var popupWindow10Configuration = {
     title: "Popup Window10",
     content: "/Work1/Index0"
@@ -133,10 +135,16 @@ var popupWindow26Configuration = {
     content: "/Work2/Index6"
 };
 
+//-----------------------------------------------------
 
 var popupWindow30Configuration = {
     title: "Popup Window3",
     content: "/Work3/Index"
+};
+
+var popupWindow40Configuration = {
+    title: "Program Window",
+    content: "/Program/Index"
 };
 
 //-----------------------------------------------------
@@ -203,8 +211,13 @@ var getPopupWindowConfiguration = function (menuItemText) {
             popupWindowConfiguration = popupWindow26Configuration;
             break;
 
+
         case "Menu3 Item0":
             popupWindowConfiguration = popupWindow30Configuration;
+            break;
+
+        case "Program Menu Item0":
+            popupWindowConfiguration = popupWindow40Configuration;
             break;
     }
 

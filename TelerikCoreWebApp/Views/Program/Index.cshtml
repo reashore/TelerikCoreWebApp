@@ -1,0 +1,63 @@
+﻿
+
+<div id="cap-view" class="k-content">
+    <h4>@Html.Label("color", "Cap Color")</h4>
+    @(Html.Kendo().DropDownList()
+          .Name("color")
+          .DataTextField("Text")
+          .DataValueField("Value")
+          .Events(e => e.Change("change"))
+          .BindTo(new List<SelectListItem>
+          {
+              new SelectListItem
+              {
+                  Text = "Black",
+                  Value = "1"
+              },
+              new SelectListItem
+              {
+                  Text = "Orange",
+                  Value = "2"
+              },
+              new SelectListItem
+              {
+                  Text = "Grey",
+                  Value = "3"
+              }
+          })
+          .Value("1")
+          .HtmlAttributes(new { style = "width: 100%" })
+          )
+
+    <h4 style="margin-top: 2em;">@Html.Label("size", "Cap Size")</h4>
+    @(Html.Kendo().DropDownList()
+          .Name("size")
+          .BindTo(new List<string>
+          {
+              "S  - 6",
+              "M  - 7",
+              "L  - 8",
+              "XL - 9"
+          })
+          .HtmlAttributes(new { style = "width: 100%" })
+          )
+
+    <button id="customizeButton" class="k-button k-primary">Customize</button>
+    @*<button class="k-button k-primary" id="customizeButton" style="margin-top: 2em; float: right;">Customize</button>*@
+</div>
+
+<script>
+    //function change() {
+    //    var value = $("#color").val();
+
+    //};
+
+    $(document).ready(function () {
+        $("#customizeButton").click(function () {
+            var color = $("#color").data("kendoDropDownList");
+            var size = $("#size").data("kendoDropDownList");
+
+            alert('ColorId = ' + color.value() + ',  Size = ' + size.value());
+        });
+    });
+</script>
