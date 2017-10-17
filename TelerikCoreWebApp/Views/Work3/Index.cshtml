@@ -1,0 +1,32 @@
+﻿@model CompositeViewModel
+
+@{
+    ViewBag.Title = "Composite Page";
+}
+
+<h1>Composite Page</h1>
+
+<table class="table table-bordered table-hover table-condensed">
+    <tbody>
+    <tr>
+        <td>Controller</td>
+        <td>@Model.ControllerAndActionViewModel.Controller</td>
+    </tr>
+    <tr>
+        <td>Action</td>
+        <td>@Model.ControllerAndActionViewModel.Action</td>
+    </tr>
+    </tbody>
+</table>
+
+<div>
+    @Html.Partial("PartialView1", Model.Partial1ViewModel)
+</div>
+
+<div>
+    @Html.Partial("PartialView2", Model.Partial2ViewModel)
+</div>
+
+<div>
+    @Html.Partial("PartialView3", Model.Partial3ViewModel)
+</div>

@@ -34,6 +34,11 @@
                   children.Add().Text("Menu2 Item6");
               });
 
+              items.Add().Text("Menu3").Items(children =>
+              {
+                  children.Add().Text("Menu3 Item0");
+              });
+
               items.Add().Text("Window").Items(children =>
               {
                   children.Add().Text("Close All Windows");
@@ -85,9 +90,9 @@
     <div class="k-content">
         @(Html.Kendo().ToolBar().Name("ToolBar").Items(items =>
         {
-            for (int n =0; n < numberItems; n++)
+            for (int n = 0; n < numberItems; n++)
             {
-                string statusBarButtonText = "Popup Window" + n;
+                string statusBarButtonText = "Popup" + n;
                 string statusBarButtonId = "statusBarButton" + n;
 
                 items.Add().Type(CommandType.Button).Text(statusBarButtonText).Id(statusBarButtonId);

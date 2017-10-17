@@ -1,10 +1,9 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using TelerikCoreWebApp.Models;
 
 namespace TelerikCoreWebApp.Controllers
 {
-    public class Work1Controller : Controller
+    public class Work1Controller : DemoBaseController
     {
         [HttpGet]
         public IActionResult Index0()
@@ -58,25 +57,6 @@ namespace TelerikCoreWebApp.Controllers
         public IActionResult Index6()
         {
             return View("DisplayControllerAndAction", GetControllerAndAction());
-        }
-
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-
-        private ControllerAndActionViewModel GetControllerAndAction()
-        {
-            string controller = (string)RouteData.Values["controller"];
-            string action = (string)RouteData.Values["action"];
-
-            ControllerAndActionViewModel controllerAndActionViewModel = new ControllerAndActionViewModel
-            {
-                Controller = controller,
-                Action = action
-            };
-
-            return controllerAndActionViewModel;
         }
     }
 }

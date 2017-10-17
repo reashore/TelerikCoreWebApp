@@ -46,17 +46,17 @@ var defaultPopupWindowConfiguration = {
     modal: false,
     scrollable: true,
     visible: false,
-    actions: ["Pin", "Refresh", "Minimize", "Maximize", "Close"]
-    //open: onOpen,
-    //activate: onActivate,
-    //refresh: onRefresh,
-    //resize: onResize,
-    //dragstart: onDragStart,
-    //dragend: onDragEnd,
-    //deactivate: onDeactivate,
-    //minimize: onMinimize,
-    //maximize: onMaximize,
-    //close: onClosePopupWindow
+    actions: ["Pin", "Refresh", "Minimize", "Maximize", "Close"],
+    open: onOpen,
+    activate: onActivate,
+    refresh: onRefresh,
+    resize: onResize,
+    dragstart: onDragStart,
+    dragend: onDragEnd,
+    deactivate: onDeactivate,
+    minimize: onMinimize,
+    maximize: onMaximize,
+    close: onClosePopupWindow
 };
 
 //-----------------------------------------------------
@@ -133,6 +133,12 @@ var popupWindow26Configuration = {
     content: "/Work2/Index6"
 };
 
+
+var popupWindow30Configuration = {
+    title: "Popup Window3",
+    content: "/Work3/Index"
+};
+
 //-----------------------------------------------------
 
 var getPopupWindowConfiguration = function (menuItemText) {
@@ -195,6 +201,10 @@ var getPopupWindowConfiguration = function (menuItemText) {
 
         case "Menu2 Item6":
             popupWindowConfiguration = popupWindow26Configuration;
+            break;
+
+        case "Menu3 Item0":
+            popupWindowConfiguration = popupWindow30Configuration;
             break;
     }
 
@@ -276,38 +286,38 @@ $(document).ready(function () {
 
 //-------------------------------------------------------------                                                                                               
 
-//var onOpen = function (e) {
-//    console.log("onOpen");
-//};
+var onOpen = function (e) {
+    console.log("onOpen");
+};
 
-//var onActivate = function (e) {
-//    console.log("onActivate");
-//};
+var onActivate = function (e) {
+    console.log("onActivate");
+};
 
-//var onRefresh = function (e) {
-//    console.log("onRefresh");
-//};
+var onRefresh = function (e) {
+    console.log("onRefresh");
+};
 
-//var onResize = function (e) {
-//    console.log("onResize");
-//};
+var onResize = function (e) {
+    console.log("onResize");
+};
 
-//var onDragStart = function (e) {
-//    console.log("onDragStart");
-//};
+var onDragStart = function (e) {
+    console.log("onDragStart");
+};
 
-//var onDragEnd = function (e) {
-//    console.log("onDragEnd");
-//};
+var onDragEnd = function (e) {
+    console.log("onDragEnd");
+};
 
-//var onDeactivate = function (e) {
-//    console.log("onDeactivate");
-//};
+var onDeactivate = function (e) {
+    console.log("onDeactivate");
+};
 
-//var onMinimize = function (e) {
-//    console.log("onMinimize");
-//};
+var onMinimize = function (e) {
+    console.log("onMinimize");
+};
 
-//var onMaximize = function (e) {
-//    console.log("onMaximize");
-//};
+var onMaximize = function (e) {
+    console.log("onMaximize");
+};
