@@ -1,61 +1,70 @@
 ﻿
+@{
+    List<SelectListItem> colorSelectList = new List<SelectListItem>
+    {
+        new SelectListItem
+        {
+            Text = "Blue",
+            Value = "1"
+        },
+        new SelectListItem
+        {
+            Text = "Orange",
+            Value = "2"
+        },
+        new SelectListItem
+        {
+            Text = "Yellow",
+            Value = "3"
+        }
+    };
 
-<div id="cap-view" class="k-content">
-    <h4>@Html.Label("color", "Cap Color")</h4>
-    @(Html.Kendo().DropDownList()
-          .Name("color")
-          .DataTextField("Text")
-          .DataValueField("Value")
-          .Events(e => e.Change("change"))
-          .BindTo(new List<SelectListItem>
-          {
-              new SelectListItem
-              {
-                  Text = "Black",
-                  Value = "1"
-              },
-              new SelectListItem
-              {
-                  Text = "Orange",
-                  Value = "2"
-              },
-              new SelectListItem
-              {
-                  Text = "Grey",
-                  Value = "3"
-              }
-          })
-          .Value("1")
-          .HtmlAttributes(new { style = "width: 100%" })
-          )
+    List<string> sizeSelectList = new List<string>
+    {
+        "S",
+        "M",
+        "L",
+        "XL"
+    };
+}
 
-    <h4 style="margin-top: 2em;">@Html.Label("size", "Cap Size")</h4>
-    @(Html.Kendo().DropDownList()
-          .Name("size")
-          .BindTo(new List<string>
-          {
-              "S  - 6",
-              "M  - 7",
-              "L  - 8",
-              "XL - 9"
-          })
-          .HtmlAttributes(new { style = "width: 100%" })
-          )
+<div>
+    <form>
+        <div class="form-group">
+            @Html.Label("color", "Color")
+            @(Html.Kendo().DropDownList()
+              .Name("color")
+              .DataTextField("Text")
+              .DataValueField("Value")
+              .Events(e => e.Change("onChange"))
+              .BindTo(colorSelectList)
+              .Value("1")
+              .HtmlAttributes(new { @class = "form-control" }))
+        </div>
 
-    <button id="customizeButton" class="k-button k-primary">Customize</button>
-    @*<button class="k-button k-primary" id="customizeButton" style="margin-top: 2em; float: right;">Customize</button>*@
+        <div class="form-group">
+            @Html.Label("size", "Size")
+            @(Html.Kendo().DropDownList()
+              .Name("size")
+              .BindTo(sizeSelectList)
+              .HtmlAttributes(new { @class = "form-control" }))
+        </div>
+
+        <button id="showButton" class="k-button k-primary" style="margin-top: 2em;">Show Values</button>
+    </form>
 </div>
 
 <script>
-    //function change() {
-    //    var value = $("#color").val();
-
-    //};
+    var onChange = function () {
+    };
 
     $(document).ready(function () {
-        $("#customizeButton").click(function () {
-            var color = $("#color").data("kendoDropDownList");
-            var size = $("#size").data("kendoDropDownList");
+        var $color = $("#color");
+        var $size = $("#size");
+
+        $("#showButton").click(function () {
+            var color = $color.data("kendoDropDownList");
+            var size = $size.data("kendoDropDownList");
 
             alert('ColorId = ' + color.value() + ',  Size = ' + size.value());
         });

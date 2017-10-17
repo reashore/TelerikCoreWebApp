@@ -37,10 +37,10 @@ var defaultPopupWindowConfiguration = {
         top: 200,
         left: 600
     },
-    width: 600,
-    height: 300,
-    maxHeight: 700,
-    maxWidth: 700,
+    width: 800,
+    height: 600,
+    maxHeight: 900,
+    maxWidth: 900,
     draggable: true,
     iframe: true,
     modal: false,
@@ -211,6 +211,7 @@ var getPopupWindowConfiguration = function (menuItemText) {
             popupWindowConfiguration = popupWindow26Configuration;
             break;
 
+        //--------
 
         case "Menu3 Item0":
             popupWindowConfiguration = popupWindow30Configuration;
