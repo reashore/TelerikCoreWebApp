@@ -6,7 +6,7 @@ namespace TelerikCoreWebApp.Repositories
 {
     public interface IClbcProgramRepository
     {
-        IEnumerable<ClbcProgram> ClbcPrograms { get; }
+        List<ClbcProgram> ClbcPrograms { get; }
         void AddClbcProgram(ClbcProgram clbcProgram);
     }
 
@@ -36,7 +36,7 @@ namespace TelerikCoreWebApp.Repositories
             }
         };
 
-        public IEnumerable<ClbcProgram> ClbcPrograms => _clbcProgramList;
+        public List<ClbcProgram> ClbcPrograms => _clbcProgramList;
 
         public void AddClbcProgram(ClbcProgram clbcProgram)
         {

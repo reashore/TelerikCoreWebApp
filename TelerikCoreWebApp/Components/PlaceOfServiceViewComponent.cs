@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using TelerikCoreWebApp.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 using TelerikCoreWebApp.Repositories;
 
 namespace TelerikCoreWebApp.Components
@@ -17,20 +14,7 @@ namespace TelerikCoreWebApp.Components
 
         public IViewComponentResult Invoke()
         {
-            List<SelectListItem> vendorSelectListItems = new List<SelectListItem>();
-
-            foreach (PlaceOfService placeOfService in _placeOfServiceRepository.PlacesOfServices)
-            {
-                var selectListItem = new SelectListItem
-                {
-                    Value = placeOfService.PlaceOfServiceId.ToString(),
-                    Text = placeOfService.Name
-                };
-
-                vendorSelectListItems.Add(selectListItem);
-            }
-
-            return View(vendorSelectListItems);
+            return View("PlaceOfService", _placeOfServiceRepository.PlaceOfServices);
         }
     }
 }

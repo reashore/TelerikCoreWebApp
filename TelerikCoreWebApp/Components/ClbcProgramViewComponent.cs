@@ -31,7 +31,7 @@ namespace TelerikCoreWebApp.Components
             //    vendorSelectListItems.Add(selectListItem);
             //}
 
-            return View();
+            return View("ClbcProgram");
         }
     }
 }

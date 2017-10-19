@@ -1,7 +1,7 @@
 ﻿@model List<Vendor>
 
 @{
-    Layout = null;
+    Layout = "_MdiLayout";
 
     List<SelectListItem> vendorSelectListItems = new List<SelectListItem>();
 
@@ -20,19 +20,19 @@
 <div class="panel panel-default">
     <div class="panel-heading">Vendor</div>
     <div class="panel-body">
-        
+
         <form action="/" method="post">
             <div class="form-group">
-                @Html.Label("vendor", "Vendor")
+                @Html.Label("vendorDropDownList", "Vendor")
 
                 @(Html.Kendo().DropDownList()
-                  .Name("vendor")
-                  .DataTextField("Text")
-                  .DataValueField("Value")
-                  .Events(e => e.Change("onChange"))
-                  .BindTo(vendorSelectListItems)
-                  .Value("1")
-                  .HtmlAttributes(new { @class = "form-control" }))
+                      .Name("vendorDropDownList")
+                      .DataTextField("Text")
+                      .DataValueField("Value")
+                      .Events(e => e.Change("onChange"))
+                      .BindTo(vendorSelectListItems)
+                      .Value("1")
+                      .HtmlAttributes(new { @class = "form-control" }))
             </div>
 
             @*<div class="form-group">
@@ -52,7 +52,8 @@
 
                 @Html.TextBoxFor(m => m.PrimaryAddress, new { @class = "form-control" })
             </div>*@
-        </form>    
+
+        </form>
     </div>
 </div>
 
@@ -61,10 +62,26 @@
     };
 
     $(document).ready(function () {
-        var $vendor = $("#vendor");
-
-        $("#showButton").click(function () {
-            var vendor = $vendor.data("kendoDropDownList");
-        });
+        $("#vendorDropDownList").data("kendoDropDownList");
     });
 </script>
+
+
+
+@*<div class="form-group">
+        @Html.Label("ocgNumber", "OcgNumber")
+
+        @Html.TextBoxFor(m => m.OcgNumber, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+
+    <div class="form-group">
+        @Html.Label("managingQsArea", "ManagingQsArea")
+
+        @Html.TextBoxFor(m => m.ManagingQsArea, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.Label("ocgNumber", "PrimaryAddress")
+
+        @Html.TextBoxFor(m => m.PrimaryAddress, new { @class = "form-control" })
+    </div>*@

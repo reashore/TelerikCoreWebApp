@@ -1,0 +1,49 @@
+﻿@model List<PlaceOfService>
+
+@{
+    Layout = "_MdiLayout";
+
+    List<SelectListItem> placeOfServiceSelectListItems = new List<SelectListItem>();
+
+    foreach (PlaceOfService placeOfService in Model)
+    {
+        var selectListItem = new SelectListItem
+        {
+            Value = placeOfService.PlaceOfServiceId.ToString(),
+            Text = placeOfService.Name
+        };
+
+        placeOfServiceSelectListItems.Add(selectListItem);
+    }
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">Place of Service</div>
+    <div class="panel-body">
+
+        <form action="/" method="post">
+            <div class="form-group">
+                @Html.Label("placeOfServiceDropDownList", "Place of Service")
+
+                @(Html.Kendo().DropDownList()
+                  .Name("placeOfServiceDropDownList")
+                  .DataTextField("Text")
+                  .DataValueField("Value")
+                  .Events(e => e.Change("onChange"))
+                  .BindTo(placeOfServiceSelectListItems)
+                  .Value("1")
+                  .HtmlAttributes(new { @class = "form-control" }))
+            </div>
+            <button id="createPlaceOfService" class="btn btn-primary">Create Place of Service</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    var onChange = function () {
+    };
+
+    $(document).ready(function () {
+        $("#placeOfServiceDropDownList").data("kendoDropDownList");
+    });
+</script>

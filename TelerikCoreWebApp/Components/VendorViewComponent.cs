@@ -14,20 +14,7 @@ namespace TelerikCoreWebApp.Components
 
         public IViewComponentResult Invoke()
         {
-            //List<SelectListItem> vendorSelectListItems = new List<SelectListItem>();
-
-            //foreach (Vendor vendor in _vendorRepository.Vendors)
-            //{
-            //    var selectListItem = new SelectListItem
-            //    {
-            //        Value = vendor.VendorId.ToString(),
-            //        Text = vendor.Name
-            //    };
-
-            //    vendorSelectListItems.Add(selectListItem);
-            //}
-
-            return View(_vendorRepository.Vendors);
+            return View("Vendor", _vendorRepository.Vendors);
         }
     }
 }

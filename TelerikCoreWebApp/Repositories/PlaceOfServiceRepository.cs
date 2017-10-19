@@ -5,7 +5,7 @@ namespace TelerikCoreWebApp.Repositories
 {
     public interface IPlaceOfServiceRepository
     {
-        IEnumerable<PlaceOfService> PlacesOfServices { get; }
+        List<PlaceOfService> PlaceOfServices { get; }
         void AddPlaceOfService(PlaceOfService placeOfService);
     }
 
@@ -35,7 +35,7 @@ namespace TelerikCoreWebApp.Repositories
             }
         };
 
-        public IEnumerable<PlaceOfService> PlacesOfServices => _placeOfServiceList;
+        public List<PlaceOfService> PlaceOfServices => _placeOfServiceList;
 
         public void AddPlaceOfService(PlaceOfService placeOfService)
         {

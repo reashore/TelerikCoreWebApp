@@ -277,6 +277,7 @@ var selectMenuItem = function (e) {
     $popupWindow.removeData();
     var popupWindow = $popupWindow.kendoWindow(popupWindowConfiguration);
     popupWindow = popupWindow.data("kendoWindow");
+    // bug title not set on correct element?
     //$("#popupWindow" + freePopupIndex + "_wnd_title").text(popupWindowConfiguration.title);
     popupWindow.open();
 
