@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
+using TelerikCoreWebApp.Repositories;
 
 namespace TelerikCoreWebApp
 {
@@ -19,6 +20,9 @@ namespace TelerikCoreWebApp
         {
             services.AddMvc().AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
             services.AddKendo();
+            services.AddSingleton<IVendorRepository, VendorRepository>();
+            services.AddSingleton<IClbcProgramRepository, ClbcProgramRepository>();
+            services.AddSingleton<IPlaceOfServiceRepository, PlaceOfServiceRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

@@ -1,4 +1,4 @@
-﻿namespace TelerikCoreWebApp.Models
+﻿namespace TelerikCoreWebApp.ViewModels
 {
     public class UserViewModel
     {

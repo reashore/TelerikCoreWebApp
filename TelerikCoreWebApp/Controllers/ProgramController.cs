@@ -5,7 +5,13 @@ namespace TelerikCoreWebApp.Controllers
     public class ProgramController : DemoBaseController
     {
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult DropDownDemo()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult ProgramDemo()
         {
             return View();
         }

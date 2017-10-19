@@ -34,8 +34,8 @@ var getIndexOfUnusedPopup = function (numberItems) {
 var defaultPopupWindowConfiguration = {
     inUse: false,
     position: {
-        top: 200,
-        left: 600
+        top: 50,
+        left: 400
     },
     width: 800,
     height: 600,
@@ -143,8 +143,13 @@ var popupWindow30Configuration = {
 };
 
 var popupWindow40Configuration = {
-    title: "Program Window",
-    content: "/Program/Index"
+    title: "Program Menu Drop Down Demo",
+    content: "/Program/DropDownDemo"
+};
+
+var popupWindow41Configuration = {
+    title: "Program Menu Program Demo",
+    content: "/Program/ProgramDemo"
 };
 
 //-----------------------------------------------------
@@ -217,8 +222,14 @@ var getPopupWindowConfiguration = function (menuItemText) {
             popupWindowConfiguration = popupWindow30Configuration;
             break;
 
-        case "Program Menu Item0":
+        //--------
+
+        case "Program Menu Drop Down Demo":
             popupWindowConfiguration = popupWindow40Configuration;
+            break;
+
+        case "Program Menu Program Demo":
+            popupWindowConfiguration = popupWindow41Configuration;
             break;
     }
 
@@ -249,6 +260,7 @@ var attachEventHandlers = function () {
 // Event Handlers
 
 var selectMenuItem = function (e) {
+    // numberItems must be insync with C# code
     var numberItems = 6;
     var $item = $(e.item);
     var menuItemText = $item.children(".k-link").text();
@@ -262,9 +274,10 @@ var selectMenuItem = function (e) {
     var $popupWindow = $("#popupWindow" + freePopupIndex);
 
     $popupWindow.empty();
+    $popupWindow.removeData();
     var popupWindow = $popupWindow.kendoWindow(popupWindowConfiguration);
     popupWindow = popupWindow.data("kendoWindow");
-    $("#popupWindow" + freePopupIndex + "_wnd_title").text(popupWindowConfiguration.title);
+    //$("#popupWindow" + freePopupIndex + "_wnd_title").text(popupWindowConfiguration.title);
     popupWindow.open();
 
     popupWindowInUseArray[freePopupIndex] = false;
@@ -290,7 +303,7 @@ var onClosePopupWindow = function (e) {
 var popupWindowArray = [];
 
 $(document).ready(function () {
-    var numberItems = 12;
+    var numberItems = 6;
 
     attachEventHandlers();
     popupWindowArray = createPopupWindowArray(numberItems);

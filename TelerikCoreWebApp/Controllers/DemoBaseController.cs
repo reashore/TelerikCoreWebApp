@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using TelerikCoreWebApp.Models;
+using TelerikCoreWebApp.ViewModels;
 
 namespace TelerikCoreWebApp.Controllers
 {

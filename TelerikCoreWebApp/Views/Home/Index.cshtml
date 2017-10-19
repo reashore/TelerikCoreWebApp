@@ -7,7 +7,7 @@
 @{
     ViewBag.Title = "Window Demo Page";
 
-    const int numberItems = 4;
+    const int numberItems = 6;
 
     <div id="megaStore">
         @(Html.Kendo().Menu().Name("MenuBar").Items(items =>
@@ -41,7 +41,8 @@
 
               items.Add().Text("Program").Items(children =>
               {
-                  children.Add().Text("Program Menu Item0");
+                  children.Add().Text("Program Menu Drop Down Demo");
+                  children.Add().Text("Program Menu Program Demo");
               });
 
               items.Add().Text("Window").Items(children =>

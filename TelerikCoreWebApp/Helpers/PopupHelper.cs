@@ -10,15 +10,16 @@ namespace TelerikCoreWebApp.Helpers
             {
                 Name = $"popupWindow{index}",
                 Title = $"Popup Window{index}",
+                // bug here
                 Action = $"Index{index}",
-                Controller = "Home",
+                Controller = "Work1",
                 OnClose = "onClosePopupWindow",
-                Top = 200 + index * 25,
-                Left = 600 + index * 25,
-                Width = 600,
-                Height = 300,
-                MaxWidth = 700,
-                MaxHeight = 700
+                Top = 0 + index * 25,
+                Left = 400 + index * 25,
+                Width = 800,
+                Height = 800,
+                MaxWidth = 800,
+                MaxHeight = 800
             };
 
             return popupWindow;

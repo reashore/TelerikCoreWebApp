@@ -1,0 +1,70 @@
+﻿@model List<Vendor>
+
+@{
+    Layout = null;
+
+    List<SelectListItem> vendorSelectListItems = new List<SelectListItem>();
+
+    foreach (Vendor vendor in Model)
+    {
+        var selectListItem = new SelectListItem
+        {
+            Value = vendor.VendorId.ToString(),
+            Text = vendor.Name
+        };
+
+        vendorSelectListItems.Add(selectListItem);
+    }
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">Vendor</div>
+    <div class="panel-body">
+        
+        <form action="/" method="post">
+            <div class="form-group">
+                @Html.Label("vendor", "Vendor")
+
+                @(Html.Kendo().DropDownList()
+                  .Name("vendor")
+                  .DataTextField("Text")
+                  .DataValueField("Value")
+                  .Events(e => e.Change("onChange"))
+                  .BindTo(vendorSelectListItems)
+                  .Value("1")
+                  .HtmlAttributes(new { @class = "form-control" }))
+            </div>
+
+            @*<div class="form-group">
+                @Html.Label("ocgNumber", "OcgNumber")
+
+                @Html.TextBoxFor(m => m.OcgNumber, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("managingQsArea", "ManagingQsArea")
+
+                @Html.TextBoxFor(m => m.ManagingQsArea, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("ocgNumber", "PrimaryAddress")
+
+                @Html.TextBoxFor(m => m.PrimaryAddress, new { @class = "form-control" })
+            </div>*@
+        </form>    
+    </div>
+</div>
+
+<script>
+    var onChange = function () {
+    };
+
+    $(document).ready(function () {
+        var $vendor = $("#vendor");
+
+        $("#showButton").click(function () {
+            var vendor = $vendor.data("kendoDropDownList");
+        });
+    });
+</script>
