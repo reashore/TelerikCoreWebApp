@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TelerikCoreWebApp.Repositories;
+using TelerikCoreWebApp.ViewModels;
 
 namespace TelerikCoreWebApp.Components
 {
@@ -14,7 +15,13 @@ namespace TelerikCoreWebApp.Components
 
         public IViewComponentResult Invoke()
         {
-            return View("Vendor", _vendorRepository.Vendors);
+            VendorViewModel vendorViewModel = new VendorViewModel
+            {
+                SelectedVendorId = 1,
+                VendorList = _vendorRepository.Vendors
+            };
+
+            return View("Vendor", vendorViewModel);
         }
     }
 }

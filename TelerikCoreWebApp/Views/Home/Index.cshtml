@@ -14,6 +14,7 @@
           {
               items.Add().Text("Menu1").Items(children =>
               {
+                  //children.Add().Text("Menu1 Item0").Action("Action", "Controller", null);
                   children.Add().Text("Menu1 Item0");
                   children.Add().Text("Menu1 Item1");
                   children.Add().Text("Menu1 Item2");
@@ -41,8 +42,9 @@
 
               items.Add().Text("Program").Items(children =>
               {
-                  children.Add().Text("Program Menu Drop Down Demo");
                   children.Add().Text("Program Menu Program Demo");
+                  children.Add().Text("Program Menu Drop Down Demo1");
+                  children.Add().Text("Program Menu Drop Down Demo2");
               });
 
               items.Add().Text("Window").Items(children =>

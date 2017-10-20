@@ -1,5 +1,11 @@
 ﻿"use strict";
 
+// todo Pass the controller and action separately, rather than as a content property
+// todo Make it easier to add new menu items
+// todo Pass parameters, like numberItems, from .Net to JavaScript
+// todo Convert to use TypeScript
+// todo Allow support for both creating windows and other actions like arranging or closing windows
+
 var popupWindowArray = [];
 var popupWindowInUseArray = [];
 
@@ -47,21 +53,19 @@ var defaultPopupWindowConfiguration = {
     scrollable: true,
     visible: false,
     actions: ["Pin", "Refresh", "Minimize", "Maximize", "Close"],
-    open: onOpen,
-    activate: onActivate,
-    refresh: onRefresh,
-    resize: onResize,
-    dragstart: onDragStart,
-    dragend: onDragEnd,
-    deactivate: onDeactivate,
-    minimize: onMinimize,
-    maximize: onMaximize,
+    //open: onOpen,
+    //activate: onActivate,
+    //refresh: onRefresh,
+    //resize: onResize,
+    //dragstart: onDragStart,
+    //dragend: onDragEnd,
+    //deactivate: onDeactivate,
+    //minimize: onMinimize,
+    //maximize: onMaximize,
     close: onClosePopupWindow
 };
 
 //-----------------------------------------------------
-
-// todo Separate the controller and action
 
 var popupWindow10Configuration = {
     title: "Popup Window10",
@@ -142,14 +146,21 @@ var popupWindow30Configuration = {
     content: "/Work3/Index"
 };
 
+//-----------------------------------------------------
+
 var popupWindow40Configuration = {
-    title: "Program Menu Drop Down Demo",
-    content: "/Program/DropDownDemo"
+    title: "Program Menu Program Demo",
+    content: "/Program/ProgramDemo"
 };
 
 var popupWindow41Configuration = {
-    title: "Program Menu Program Demo",
-    content: "/Program/ProgramDemo"
+    title: "Program Menu Drop Down Demo1",
+    content: "/Program/DropDownListDemo1"
+};
+
+var popupWindow42Configuration = {
+    title: "Program Menu Drop Down Demo2",
+    content: "/Program/DropDownListDemo2"
 };
 
 //-----------------------------------------------------
@@ -224,12 +235,16 @@ var getPopupWindowConfiguration = function (menuItemText) {
 
         //--------
 
-        case "Program Menu Drop Down Demo":
+        case "Program Menu Program Demo":
             popupWindowConfiguration = popupWindow40Configuration;
             break;
 
-        case "Program Menu Program Demo":
+        case "Program Menu Drop Down Demo1":
             popupWindowConfiguration = popupWindow41Configuration;
+            break;
+
+        case "Program Menu Drop Down Demo2":
+            popupWindowConfiguration = popupWindow42Configuration;
             break;
     }
 
@@ -277,8 +292,7 @@ var selectMenuItem = function (e) {
     $popupWindow.removeData();
     var popupWindow = $popupWindow.kendoWindow(popupWindowConfiguration);
     popupWindow = popupWindow.data("kendoWindow");
-    // bug title not set on correct element?
-    //$("#popupWindow" + freePopupIndex + "_wnd_title").text(popupWindowConfiguration.title);
+    $("#popupWindow" + freePopupIndex + "_wnd_title").text(popupWindowConfiguration.title);
     popupWindow.open();
 
     popupWindowInUseArray[freePopupIndex] = false;
@@ -314,38 +328,38 @@ $(document).ready(function () {
 
 //-------------------------------------------------------------                                                                                               
 
-var onOpen = function (e) {
-    console.log("onOpen");
-};
+//var onOpen = function (e) {
+//    console.log("onOpen");
+//};
 
-var onActivate = function (e) {
-    console.log("onActivate");
-};
+//var onActivate = function (e) {
+//    console.log("onActivate");
+//};
 
-var onRefresh = function (e) {
-    console.log("onRefresh");
-};
+//var onRefresh = function (e) {
+//    console.log("onRefresh");
+//};
 
-var onResize = function (e) {
-    console.log("onResize");
-};
+//var onResize = function (e) {
+//    console.log("onResize");
+//};
 
-var onDragStart = function (e) {
-    console.log("onDragStart");
-};
+//var onDragStart = function (e) {
+//    console.log("onDragStart");
+//};
 
-var onDragEnd = function (e) {
-    console.log("onDragEnd");
-};
+//var onDragEnd = function (e) {
+//    console.log("onDragEnd");
+//};
 
-var onDeactivate = function (e) {
-    console.log("onDeactivate");
-};
+//var onDeactivate = function (e) {
+//    console.log("onDeactivate");
+//};
 
-var onMinimize = function (e) {
-    console.log("onMinimize");
-};
+//var onMinimize = function (e) {
+//    console.log("onMinimize");
+//};
 
-var onMaximize = function (e) {
-    console.log("onMaximize");
-};
+//var onMaximize = function (e) {
+//    console.log("onMaximize");
+//};

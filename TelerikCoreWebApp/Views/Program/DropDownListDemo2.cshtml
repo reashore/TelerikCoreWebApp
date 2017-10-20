@@ -22,8 +22,10 @@
 <div class="panel panel-default">
     <div class="panel-heading">Vendor</div>
     <div class="panel-body">
+        
+        <h1>Drop Down List Demo2</h1>
 
-        <form action="/" method="post">
+        <form id="dropDownListForm" asp-controller="Program" asp-action="DropDownListDemo2" method="post">
             <div class="form-group">
                 @Html.Label("vendorDropDownList", "Vendor")
 
@@ -36,31 +38,13 @@
                       .Value(selectedVendorId.ToString())
                       .HtmlAttributes(new { @class = "form-control" }))
             </div>
-
-            @*<div class="form-group">
-                @Html.Label("ocgNumber", "OcgNumber")
-
-                @Html.TextBoxFor(m => m.OcgNumber, new { @class = "form-control", @readonly = "readonly" })
-            </div>
-
-            <div class="form-group">
-                @Html.Label("managingQsArea", "ManagingQsArea")
-
-                @Html.TextBoxFor(m => m.ManagingQsArea, new { @class = "form-control" })
-            </div>
-
-            <div class="form-group">
-                @Html.Label("ocgNumber", "PrimaryAddress")
-
-                @Html.TextBoxFor(m => m.PrimaryAddress, new { @class = "form-control" })
-            </div>*@
-
         </form>
     </div>
 </div>
 
 <script>
     var onChange = function () {
+        $("#dropDownListForm").submit();
     };
 
     $(document).ready(function () {
