@@ -7,6 +7,7 @@ namespace TelerikCoreWebApp.Controllers
     public class ProgramController : DemoBaseController
     {
         private readonly IVendorRepository _vendorRepository;
+        //private int selectedVendorId = 1;
 
         public ProgramController(IVendorRepository vendorRepository)
         {
@@ -30,17 +31,23 @@ namespace TelerikCoreWebApp.Controllers
         {
             VendorViewModel vendorViewModel = new VendorViewModel
             {
-                SelectedVendorId = 1,
-                VendorList = _vendorRepository.Vendors
+                VendorList = _vendorRepository.Vendors,
+                SelectedVendorId = "1"
             };
 
             return View(vendorViewModel);
         }
-
+        
         [HttpPost]
-        public IActionResult DropDownListDemo2(VendorViewModel vendorViewModel)
+        public IActionResult DropDownListDemo2(string vendorId)
         {
-            return RedirectToAction("DropDownListDemo2");
+            VendorViewModel vendorViewModel = new VendorViewModel
+            {
+                VendorList = _vendorRepository.Vendors,
+                SelectedVendorId = vendorId
+            };
+
+            return View(vendorViewModel);
         }
     }
 }

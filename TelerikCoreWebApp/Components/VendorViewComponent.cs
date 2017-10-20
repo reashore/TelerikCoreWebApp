@@ -17,7 +17,7 @@ namespace TelerikCoreWebApp.Components
         {
             VendorViewModel vendorViewModel = new VendorViewModel
             {
-                SelectedVendorId = 1,
+                SelectedVendorId = "1",
                 VendorList = _vendorRepository.Vendors
             };
 

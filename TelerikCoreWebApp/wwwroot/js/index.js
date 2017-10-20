@@ -53,15 +53,15 @@ var defaultPopupWindowConfiguration = {
     scrollable: true,
     visible: false,
     actions: ["Pin", "Refresh", "Minimize", "Maximize", "Close"],
-    //open: onOpen,
-    //activate: onActivate,
-    //refresh: onRefresh,
-    //resize: onResize,
-    //dragstart: onDragStart,
-    //dragend: onDragEnd,
-    //deactivate: onDeactivate,
-    //minimize: onMinimize,
-    //maximize: onMaximize,
+    open: onOpen,
+    activate: onActivate,
+    refresh: onRefresh,
+    resize: onResize,
+    dragstart: onDragStart,
+    dragend: onDragEnd,
+    deactivate: onDeactivate,
+    minimize: onMinimize,
+    maximize: onMaximize,
     close: onClosePopupWindow
 };
 
@@ -292,6 +292,7 @@ var selectMenuItem = function (e) {
     $popupWindow.removeData();
     var popupWindow = $popupWindow.kendoWindow(popupWindowConfiguration);
     popupWindow = popupWindow.data("kendoWindow");
+    // bug cannot read property 'title' of null
     $("#popupWindow" + freePopupIndex + "_wnd_title").text(popupWindowConfiguration.title);
     popupWindow.open();
 
@@ -328,38 +329,38 @@ $(document).ready(function () {
 
 //-------------------------------------------------------------                                                                                               
 
-//var onOpen = function (e) {
-//    console.log("onOpen");
-//};
+var onOpen = function (e) {
+    console.log("onOpen");
+};
 
-//var onActivate = function (e) {
-//    console.log("onActivate");
-//};
+var onActivate = function (e) {
+    console.log("onActivate");
+};
 
-//var onRefresh = function (e) {
-//    console.log("onRefresh");
-//};
+var onRefresh = function (e) {
+    console.log("onRefresh");
+};
 
-//var onResize = function (e) {
-//    console.log("onResize");
-//};
+var onResize = function (e) {
+    console.log("onResize");
+};
 
-//var onDragStart = function (e) {
-//    console.log("onDragStart");
-//};
+var onDragStart = function (e) {
+    console.log("onDragStart");
+};
 
-//var onDragEnd = function (e) {
-//    console.log("onDragEnd");
-//};
+var onDragEnd = function (e) {
+    console.log("onDragEnd");
+};
 
-//var onDeactivate = function (e) {
-//    console.log("onDeactivate");
-//};
+var onDeactivate = function (e) {
+    console.log("onDeactivate");
+};
 
-//var onMinimize = function (e) {
-//    console.log("onMinimize");
-//};
+var onMinimize = function (e) {
+    console.log("onMinimize");
+};
 
-//var onMaximize = function (e) {
-//    console.log("onMaximize");
-//};
+var onMaximize = function (e) {
+    console.log("onMaximize");
+};

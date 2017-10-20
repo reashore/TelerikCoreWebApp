@@ -5,7 +5,7 @@ namespace TelerikCoreWebApp.ViewModels
 {
     public class VendorViewModel
     {
-        public int SelectedVendorId { get; set; }
+        public string SelectedVendorId { get; set; }
         public List<Vendor> VendorList { get; set; }
     }
 }
