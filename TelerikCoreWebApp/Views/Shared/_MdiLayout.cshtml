@@ -11,19 +11,20 @@
         <link rel="stylesheet" href="~/lib/kendo-ui/styles/kendo.nova.min.css" />
         <link rel="stylesheet" href="~/css/site.css" />
 
+        @RenderSection("Styles", false)
+        
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/lib/kendo-ui/js/kendo.all.min.js"></script>
         <script src="~/lib/kendo-ui/js/kendo.aspnetmvc.min.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
-    
-    @RenderSection("Styles", false)
-    @RenderSection("Scripts", false)
 </head>
 <body>
     <div class="container body-content">
         @RenderBody()
     </div>
+
+    @RenderSection("Scripts", false)
 </body>
 </html>

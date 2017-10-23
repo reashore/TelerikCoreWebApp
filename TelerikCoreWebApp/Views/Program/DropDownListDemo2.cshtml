@@ -67,13 +67,15 @@
     </div>
 </div>
 
-<script>
-    var onChange = function () {
-        $("#dropDownListForm").submit();
-    };
+@section Scripts
+{
+    <script>
+        var onChange = function() {
+            $("#dropDownListForm").submit();
+        };
 
-    $(document).ready(function () {
-        $("#vendorId").data("kendoDropDownList");
-    });
-</script>
-
+        $(document).ready(function() {
+            $("#vendorId").data("kendoDropDownList");
+        });
+    </script>
+}

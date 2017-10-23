@@ -1,5 +1,7 @@
 ﻿
 @{
+    Layout = "_MdiLayout";
+
     List<SelectListItem> colorSelectList = new List<SelectListItem>
     {
         new SelectListItem
@@ -54,19 +56,27 @@
     </form>
 </div>
 
-<script>
-    var onChange = function () {
-    };
+@section Scripts
+{
+    <script>
+        var onChange = function() {
+        };
 
-    $(document).ready(function () {
-        var $color = $("#color");
-        var $size = $("#size");
+        $(document).ready(function() {
+            var $color = $("#color");
+            var $size = $("#size");
 
-        $("#showButton").click(function () {
-            var color = $color.data("kendoDropDownList");
-            var size = $size.data("kendoDropDownList");
+            $("#showButton").click(function() {
+                var color = $color.data("kendoDropDownList");
+                var size = $size.data("kendoDropDownList");
 
-            alert('ColorId = ' + color.value() + ',  Size = ' + size.value());
+                var message = "Color Id = " + color.value();
+                message += ", Color = " + color.text();
+                message += ", Size = " + size.value();
+
+                console.log(message);
+                alert(message);
+            });
         });
-    });
-</script>
+    </script>
+}

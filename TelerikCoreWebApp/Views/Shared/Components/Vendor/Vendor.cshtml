@@ -1,17 +1,29 @@
-﻿@using TelerikCoreWebApp.ViewModels;
+﻿
+@using TelerikCoreWebApp.ViewModels;
 @model VendorViewModel
 
 @{
     Layout = "_MdiLayout";
 
+    string selectedVendorId = Model.SelectedVendorId;
     List<SelectListItem> vendorSelectListItems = new List<SelectListItem>();
+    List<Vendor> vendorList = Model.VendorList;
+    int vendorIndex = int.Parse(selectedVendorId);
+    Vendor selectedVendor = vendorList[vendorIndex];
+
+    string ocgNumber = selectedVendor.OcgNumber;
+    string managingQsArea = selectedVendor.ManagingQsArea;
+    string primaryAddress = selectedVendor.PrimaryAddress;
 
     foreach (Vendor vendor in Model.VendorList)
     {
+        int vendorId = vendor.VendorId;
+
         var selectListItem = new SelectListItem
         {
-            Value = vendor.VendorId.ToString(),
-            Text = vendor.Name
+            Value = vendorId.ToString(),
+            Text = vendor.Name,
+            Selected = vendorId.ToString() == selectedVendorId
         };
 
         vendorSelectListItems.Add(selectListItem);
@@ -21,30 +33,85 @@
 <div class="panel panel-default">
     <div class="panel-heading">Vendor</div>
     <div class="panel-body">
+        <h1>Vendor View Component</h1>
+        <div class="form-group">
+            @Html.Label("vendorId", "Vendor Name:")
 
-        <form action="/" method="post">
-            <div class="form-group">
-                @Html.Label("vendorDropDownList", "Vendor")
+            @(Html.Kendo().DropDownList()
+                  .Name("vendorId")
+                  .DataValueField("Value")
+                  .DataTextField("Text")
+                  .Events(e => e.Change("onChange"))
+                  .BindTo(vendorSelectListItems)
+                  .Value(selectedVendorId)
+                  .HtmlAttributes(new {@class = "form-control"}))
+        </div>
 
-                @(Html.Kendo().DropDownList()
-                      .Name("vendorDropDownList")
-                      .DataTextField("Text")
-                      .DataValueField("Value")
-                      .Events(e => e.Change("onChange"))
-                      .BindTo(vendorSelectListItems)
-                      .Value("1")
-                      .HtmlAttributes(new { @class = "form-control" }))
-            </div>
-        </form>
+        <div class="form-group">
+            <label for="ocgNumber">OCG Number:</label>
+            <input id="ocgNumber" name="ocgNumber" type="text" readonly="readonly" value="@ocgNumber" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="managingQsArea">Managing QS Area:</label>
+            <input id="managingQsArea" name="managingQsArea" type="text" readonly="readonly" value="@managingQsArea" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="primaryAddress">Primary Address:</label>
+            <input id="primaryAddress" name="primaryAddress" type="text" readonly="readonly" value="@primaryAddress" class="form-control"/>
+        </div>
+
+        <div id="resultDiv">
+
+        </div>
     </div>
 </div>
 
-<script>
-    var onChange = function () {
-    };
+@section Scripts
+{
+    <script>
+        var $vendorId;
+        var $ocgNumber;
+        var $managingQsArea;
+        var $primaryAddress;
 
-    $(document).ready(function () {
-        $("#vendorDropDownList").data("kendoDropDownList");
-    });
-</script>
+        var success = function (result) {
+            //console.log("VendorViewComponent: success");
 
+            var ocgNumber = result.ocgNumber;
+            var managingQsArea = result.managingQsArea;
+            var primaryAddress = result.primaryAddress;
+
+            $ocgNumber.val(ocgNumber);
+            $managingQsArea.val(managingQsArea);
+            $primaryAddress.val(primaryAddress);
+        };
+
+        var error = function(xhr, status, error) {
+            //console.log("VendorViewComponent: error");
+            console.log("error = " + error);
+        };
+
+        var onChange = function() {
+            var vendorId = $vendorId.val();
+            //console.log("VendorViewComponent: vendorid = " + vendorId);
+            var url = "http://localhost:13587/api/vendors/" + vendorId;
+
+            $.ajax({
+                url: url,
+                success: success,
+                error: error
+            });
+        };
+
+        $(document).ready(function() {
+            $vendorId = $("#vendorId");
+            $ocgNumber = $("#ocgNumber");
+            $managingQsArea = $("#managingQsArea");
+            $primaryAddress = $("#primaryAddress");
+
+            $vendorId.data("kendoDropDownList");
+        });
+    </script>
+}

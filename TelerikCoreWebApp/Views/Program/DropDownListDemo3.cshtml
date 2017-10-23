@@ -32,84 +32,79 @@
 <div class="panel panel-default">
     <div class="panel-heading">Vendor</div>
     <div class="panel-body">
-        
         <h2>Vendor Demo 3</h2>
 
-        <form id="dropDownListForm" asp-controller="Program" asp-action="DropDownListDemo3" method="post">
-            <div class="form-group">
-                @Html.Label("vendorId", "Vendor Name:")
+        <div class="form-group">
+            @Html.Label("vendorId", "Vendor Name:")
 
-                @(Html.Kendo().DropDownList()
-                      .Name("vendorId")
-                      .DataValueField("Value")
-                      .DataTextField("Text")
-                      .Events(e => e.Change("onChange"))
-                      .BindTo(vendorSelectListItems)
-                      .Value(selectedVendorId)
-                      .HtmlAttributes(new { @class = "form-control" }))
-            </div>
+            @(Html.Kendo().DropDownList()
+                    .Name("vendorId")
+                    .DataValueField("Value")
+                    .DataTextField("Text")
+                    .Events(e => e.Change("onChange"))
+                    .BindTo(vendorSelectListItems)
+                    .Value(selectedVendorId)
+                    .HtmlAttributes(new { @class = "form-control" }))
+        </div>
 
-            <div class="form-group">
-                <label for="ocgNumber">OCG Number:</label>
-                <input id="ocgNumber" name="ocgNumber" type="text" readonly="readonly" value="@ocgNumber" class="form-control"/>
-            </div>
+        <div class="form-group">
+            <label for="ocgNumber">OCG Number:</label>
+            <input id="ocgNumber" name="ocgNumber" type="text" readonly="readonly" value="@ocgNumber" class="form-control"/>
+        </div>
 
-            <div class="form-group">
-                <label for="managingQsArea">Managing QS Area:</label>
-                <input id="managingQsArea" name ="managingQsArea" type="text" readonly="readonly" value="@managingQsArea" class="form-control"/>
-            </div>
+        <div class="form-group">
+            <label for="managingQsArea">Managing QS Area:</label>
+            <input id="managingQsArea" name ="managingQsArea" type="text" readonly="readonly" value="@managingQsArea" class="form-control"/>
+        </div>
 
-            <div class="form-group">
-                <label for="primaryAddress">Primary Address:</label>
-                <input id="primaryAddress" name ="primaryAddress" type="text" readonly="readonly" value="@primaryAddress" class="form-control"/>
-            </div>
-            
-            <div id="resultDiv">
-                
-            </div>
-        </form>
+        <div class="form-group">
+            <label for="primaryAddress">Primary Address:</label>
+            <input id="primaryAddress" name ="primaryAddress" type="text" readonly="readonly" value="@primaryAddress" class="form-control"/>
+        </div>
     </div>
 </div>
 
-<script>
-    var $vendorId;
-    var $ocgNumber;
-    var $managingQsArea;
-    var $primaryAddress;
+@section Scripts 
+{
+    <script>
+        var $vendorId;
+        var $ocgNumber;
+        var $managingQsArea;
+        var $primaryAddress;
 
-    var success = function (result) {
-        var ocgNumber = result.ocgNumber;
-        var managingQsArea = result.managingQsArea;
-        var primaryAddress = result.primaryAddress;
+        var success = function(result) {
+            var ocgNumber = result.ocgNumber;
+            var managingQsArea = result.managingQsArea;
+            var primaryAddress = result.primaryAddress;
 
-        $ocgNumber.val(ocgNumber);
-        $managingQsArea.val(managingQsArea);
-        $primaryAddress.val(primaryAddress);
-    };
+            $ocgNumber.val(ocgNumber);
+            $managingQsArea.val(managingQsArea);
+            $primaryAddress.val(primaryAddress);
+        };
 
-    var error = function (xhr, status, error) {
-        console.log("error = " + error);
-    };
+        var error = function(xhr, status, error) {
+            console.log("error = " + error);
+        };
 
-    var onChange = function () {
-        var vendorId = $vendorId.val();
-        console.log("vendorid = " + vendorId);
-        var url = "http://localhost:13587/api/vendors/" + vendorId;
+        var onChange = function() {
+            var vendorId = $vendorId.val();
+            console.log("vendorid = " + vendorId);
+            var url = "http://localhost:13587/api/vendors/" + vendorId;
 
-        $.ajax({
-            url: url,
-            success: success,
-            error: error
+            $.ajax({
+                url: url,
+                success: success,
+                error: error
+            });
+        };
+
+        $(document).ready(function() {
+            $vendorId = $("#vendorId");
+            $ocgNumber = $("#ocgNumber");
+            $managingQsArea = $("#managingQsArea");
+            $primaryAddress = $("#primaryAddress");
+
+            $vendorId.data("kendoDropDownList");
         });
-    };
-
-    $(document).ready(function () {
-        $vendorId = $("#vendorId");
-        $ocgNumber = $("#ocgNumber");
-        $managingQsArea = $("#managingQsArea");
-        $primaryAddress = $("#primaryAddress");
-
-        $vendorId.data("kendoDropDownList");
-    });
-</script>
-
+    </script>
+}
