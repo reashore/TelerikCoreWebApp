@@ -4,7 +4,6 @@
 @{
     Layout = "_MdiLayout";
 
-    int selectedVendorId = Model.SelectedVendorId;
     List<SelectListItem> vendorSelectListItems = new List<SelectListItem>();
 
     foreach (Vendor vendor in Model.VendorList)
@@ -33,28 +32,9 @@
                       .DataValueField("Value")
                       .Events(e => e.Change("onChange"))
                       .BindTo(vendorSelectListItems)
-                      .Value(selectedVendorId.ToString())
+                      .Value("1")
                       .HtmlAttributes(new { @class = "form-control" }))
             </div>
-
-            @*<div class="form-group">
-                @Html.Label("ocgNumber", "OcgNumber")
-
-                @Html.TextBoxFor(m => m.OcgNumber, new { @class = "form-control", @readonly = "readonly" })
-            </div>
-
-            <div class="form-group">
-                @Html.Label("managingQsArea", "ManagingQsArea")
-
-                @Html.TextBoxFor(m => m.ManagingQsArea, new { @class = "form-control" })
-            </div>
-
-            <div class="form-group">
-                @Html.Label("ocgNumber", "PrimaryAddress")
-
-                @Html.TextBoxFor(m => m.PrimaryAddress, new { @class = "form-control" })
-            </div>*@
-
         </form>
     </div>
 </div>

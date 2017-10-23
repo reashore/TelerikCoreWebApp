@@ -7,7 +7,6 @@ namespace TelerikCoreWebApp.Controllers
     public class ProgramController : DemoBaseController
     {
         private readonly IVendorRepository _vendorRepository;
-        //private int selectedVendorId = 1;
 
         public ProgramController(IVendorRepository vendorRepository)
         {

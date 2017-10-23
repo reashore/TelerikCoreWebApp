@@ -16,13 +16,13 @@
 
     foreach (Vendor vendor in Model.VendorList)
     {
-        int vendorId = vendor.VendorId;
+        string vendorId = vendor.VendorId;
 
         var selectListItem = new SelectListItem
         {
-            Value = vendorId.ToString(),
+            Value = vendorId,
             Text = vendor.Name,
-            Selected = vendorId.ToString() == selectedVendorId
+            Selected = vendorId == selectedVendorId
         };
 
         vendorSelectListItems.Add(selectListItem);

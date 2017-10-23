@@ -2,7 +2,7 @@
 {
     public class Vendor
     {
-        public string VendorId { get; set; }
+        public int VendorId { get; set; }
         public string Name { get; set; }
         public string OcgNumber { get; set; }
         public string ManagingQsArea { get; set; }
