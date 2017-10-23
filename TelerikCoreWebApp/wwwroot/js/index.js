@@ -163,6 +163,11 @@ var popupWindow42Configuration = {
     content: "/Program/DropDownListDemo2"
 };
 
+var popupWindow43Configuration = {
+    title: "Program Menu Drop Down Demo3",
+    content: "/Program/DropDownListDemo3"
+};
+
 //-----------------------------------------------------
 
 var getPopupWindowConfiguration = function (menuItemText) {
@@ -245,6 +250,10 @@ var getPopupWindowConfiguration = function (menuItemText) {
 
         case "Program Menu Drop Down Demo2":
             popupWindowConfiguration = popupWindow42Configuration;
+            break;
+
+        case "Program Menu Drop Down Demo3":
+            popupWindowConfiguration = popupWindow43Configuration;
             break;
     }
 
@@ -330,37 +339,37 @@ $(document).ready(function () {
 //-------------------------------------------------------------                                                                                               
 
 var onOpen = function (e) {
-    console.log("onOpen");
+    console.log("onOpen: target = " + e.target);
 };
 
 var onActivate = function (e) {
-    console.log("onActivate");
+    console.log("onActivate: target = " + e.target);
 };
 
 var onRefresh = function (e) {
-    console.log("onRefresh");
+    console.log("onRefresh: target = " + e.target);
 };
 
 var onResize = function (e) {
-    console.log("onResize");
+    console.log("onResize: target = " + e.target);
 };
 
 var onDragStart = function (e) {
-    console.log("onDragStart");
+    console.log("onDragStart: target = " + e.target);
 };
 
 var onDragEnd = function (e) {
-    console.log("onDragEnd");
+    console.log("onDragEnd: target = " + e.target);
 };
 
 var onDeactivate = function (e) {
-    console.log("onDeactivate");
+    console.log("onDeactivate: target = " + e.target);
 };
 
 var onMinimize = function (e) {
-    console.log("onMinimize");
+    console.log("onMinimize: target = " + e.target);
 };
 
 var onMaximize = function (e) {
-    console.log("onMaximize");
+    console.log("onMaximize: target = " + e.target);
 };

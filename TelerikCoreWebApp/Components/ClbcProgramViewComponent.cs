@@ -11,10 +11,10 @@ namespace TelerikCoreWebApp.Components
         //    _vendorRepository = vendorRepository;
         //}
 
-        public ClbcProgramViewComponent()
-        {
+        //public ClbcProgramViewComponent()
+        //{
             
-        }
+        //}
 
         public IViewComponentResult Invoke()
         {

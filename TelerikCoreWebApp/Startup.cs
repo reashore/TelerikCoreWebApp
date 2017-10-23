@@ -18,7 +18,8 @@ namespace TelerikCoreWebApp
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
+            services.AddMvc().AddJsonOptions(options => options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver());
+            //services.AddMvc().AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
             services.AddKendo();
             services.AddSingleton<IVendorRepository, VendorRepository>();
             services.AddSingleton<IClbcProgramRepository, ClbcProgramRepository>();

@@ -48,5 +48,29 @@ namespace TelerikCoreWebApp.Controllers
 
             return View(vendorViewModel);
         }
+
+        [HttpGet]
+        public IActionResult DropDownListDemo3()
+        {
+            VendorViewModel vendorViewModel = new VendorViewModel
+            {
+                VendorList = _vendorRepository.Vendors,
+                SelectedVendorId = "1"
+            };
+
+            return View(vendorViewModel);
+        }
+        
+        [HttpPost]
+        public IActionResult DropDownListDemo3(string vendorId)
+        {
+            VendorViewModel vendorViewModel = new VendorViewModel
+            {
+                VendorList = _vendorRepository.Vendors,
+                SelectedVendorId = vendorId
+            };
+
+            return View(vendorViewModel);
+        }
     }
 }

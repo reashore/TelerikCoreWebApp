@@ -11,10 +11,10 @@ namespace TelerikCoreWebApp.Components
         //    _vendorRepository = vendorRepository;
         //}
 
-        public CommunityViewComponent()
-        {
+        //public CommunityViewComponent()
+        //{
             
-        }
+        //}
 
         public IViewComponentResult Invoke()
         {

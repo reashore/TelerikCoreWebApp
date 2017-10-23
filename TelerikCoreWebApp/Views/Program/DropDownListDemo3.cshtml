@@ -16,13 +16,13 @@
 
     foreach (Vendor vendor in Model.VendorList)
     {
-        string vendorIdString = vendor.VendorId.ToString();
+        int vendorId = vendor.VendorId;
 
         var selectListItem = new SelectListItem
         {
-            Value = vendorIdString,
+            Value = vendorId.ToString(),
             Text = vendor.Name,
-            Selected = vendorIdString == selectedVendorId
+            Selected = vendorId.ToString() == selectedVendorId
         };
 
         vendorSelectListItems.Add(selectListItem);
@@ -33,11 +33,11 @@
     <div class="panel-heading">Vendor</div>
     <div class="panel-body">
         
-        <h2>Vendor</h2>
+        <h2>Vendor Demo 3</h2>
 
-        <form id="dropDownListForm" asp-controller="Program" asp-action="DropDownListDemo2" method="post">
+        <form id="dropDownListForm" asp-controller="Program" asp-action="DropDownListDemo3" method="post">
             <div class="form-group">
-                @Html.Label("vendorId", "Vendor:")
+                @Html.Label("vendorId", "Vendor Name:")
 
                 @(Html.Kendo().DropDownList()
                       .Name("vendorId")
@@ -63,17 +63,53 @@
                 <label for="primaryAddress">Primary Address:</label>
                 <input id="primaryAddress" name ="primaryAddress" type="text" readonly="readonly" value="@primaryAddress" class="form-control"/>
             </div>
+            
+            <div id="resultDiv">
+                
+            </div>
         </form>
     </div>
 </div>
 
 <script>
+    var $vendorId;
+    var $ocgNumber;
+    var $managingQsArea;
+    var $primaryAddress;
+
+    var success = function (result) {
+        var ocgNumber = result.ocgNumber;
+        var managingQsArea = result.managingQsArea;
+        var primaryAddress = result.primaryAddress;
+
+        $ocgNumber.val(ocgNumber);
+        $managingQsArea.val(managingQsArea);
+        $primaryAddress.val(primaryAddress);
+    };
+
+    var error = function (xhr, status, error) {
+        console.log("error = " + error);
+    };
+
     var onChange = function () {
-        $("#dropDownListForm").submit();
+        var vendorId = $vendorId.val();
+        console.log("vendorid = " + vendorId);
+        var url = "http://localhost:13587/api/vendors/" + vendorId;
+
+        $.ajax({
+            url: url,
+            success: success,
+            error: error
+        });
     };
 
     $(document).ready(function () {
-        $("#vendorId").data("kendoDropDownList");
+        $vendorId = $("#vendorId");
+        $ocgNumber = $("#ocgNumber");
+        $managingQsArea = $("#managingQsArea");
+        $primaryAddress = $("#primaryAddress");
+
+        $vendorId.data("kendoDropDownList");
     });
 </script>
 
