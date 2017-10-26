@@ -4,16 +4,16 @@
     ViewBag.Title = "Window Demo Page";
 }
 
-<h1>Index1 Page</h1>
+<h1>Index0 Page</h1>
 
 <form asp-controller="Work1" asp-action="Index0" method="post">
     <div class="form-group">
         <label asp-for="FirstName">First Name:</label>
-        <input class="form-control" asp-for="FirstName"/>
+        <input class="form-control" asp-for="FirstName" placeholder="First Name"/>
     </div>
     <div class="form-group">
         <label asp-for="LastName">First Name:</label>
-        <input class="form-control" asp-for="LastName"/>
+        <input class="form-control" asp-for="LastName" placeholder="Last Name"/>
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>

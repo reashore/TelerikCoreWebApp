@@ -1,4 +1,4 @@
-﻿@*@model List<SelectListItem>*@
+﻿
 
 @{
     Layout = "_MdiLayout";
@@ -10,13 +10,6 @@
         <div class="form-group">
             <h4>Program</h4>
             
-            <div id="communityDiv">
-                @await Component.InvokeAsync("Community")
-            </div>
-
-            <div id="placeOfServiceDiv">
-                @await Component.InvokeAsync("PlaceOfService")
-            </div>
         </div>
     </div>
 </div>

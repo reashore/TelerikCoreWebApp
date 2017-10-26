@@ -2,17 +2,21 @@
 
 // todo Pass the controller and action separately, rather than as a content property
 // todo Make it easier to add new menu items
-// todo Pass parameters, like numberItems, from .Net to JavaScript
 // todo Convert to use TypeScript
 // todo Allow support for both creating windows and other actions like arranging or closing windows
 
 var popupWindowArray = [];
 var popupWindowInUseArray = [];
+var numberItems;
 
-var createPopupWindowArray = function(numberItems) {
+var passRazorValuesToJavaScript = function(numberItemsFromRazor) {
+    numberItems = numberItemsFromRazor;
+};
+
+var createPopupWindowArray = function(numItems) {
     var popupWindowArray = [];
 
-    for (var n = 0; n < numberItems; n++) {
+    for (var n = 0; n < numItems; n++) {
         popupWindowArray.push($("#popupWindow" + n));
         popupWindowInUseArray.push(true);
     }
@@ -20,12 +24,12 @@ var createPopupWindowArray = function(numberItems) {
     return popupWindowArray;
 };
 
-var getIndexOfUnusedPopup = function (numberItems) {
+var getIndexOfUnusedPopup = function (numItems) {
     var freeIndex = undefined;
 
     // display warning if there is no free index
 
-    for (var n = 0; n < numberItems; n++) {
+    for (var n = 0; n < numItems; n++) {
         if (popupWindowInUseArray[n] === true) {
             freeIndex = n;
             break;
@@ -271,10 +275,8 @@ var extractNumericSuffix = function (value, prefix) {
     return value.slice(index);
 };
 
-var attachEventHandlers = function () {
-    var numberItems = 6;
-
-    for (var n = 0; n < numberItems; n++) {
+var attachEventHandlers = function (numItems) {
+    for (var n = 0; n < numItems; n++) {
         var $statusBarButton = $("#statusBarButton" + n);
         $statusBarButton.on("click", null, n, onClickStatusBarButton);
     }
@@ -284,8 +286,6 @@ var attachEventHandlers = function () {
 // Event Handlers
 
 var selectMenuItem = function (e) {
-    // numberItems must be insync with C# code
-    var numberItems = 6;
     var $item = $(e.item);
     var menuItemText = $item.children(".k-link").text();
     console.log("Selected: " + menuItemText);
@@ -302,7 +302,8 @@ var selectMenuItem = function (e) {
     var popupWindow = $popupWindow.kendoWindow(popupWindowConfiguration);
     popupWindow = popupWindow.data("kendoWindow");
     // bug cannot read property 'title' of null
-    $("#popupWindow" + freePopupIndex + "_wnd_title").text(popupWindowConfiguration.title);
+    var title = popupWindowConfiguration.title;
+    $("#popupWindow" + freePopupIndex + "_wnd_title").text(title);
     popupWindow.open();
 
     popupWindowInUseArray[freePopupIndex] = false;
@@ -328,12 +329,8 @@ var onClosePopupWindow = function (e) {
 var popupWindowArray = [];
 
 $(document).ready(function () {
-    var numberItems = 6;
-
-    attachEventHandlers();
+    attachEventHandlers(numberItems);
     popupWindowArray = createPopupWindowArray(numberItems);
-
-    console.log(popupWindowArray);
 });
 
 //-------------------------------------------------------------                                                                                               

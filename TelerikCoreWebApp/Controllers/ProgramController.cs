@@ -20,6 +20,12 @@ namespace TelerikCoreWebApp.Controllers
         }
 
         [HttpGet]
+        public IActionResult SimpleProgramDemo()
+        {
+            return View();
+        }
+
+        [HttpGet]
         public IActionResult DropDownListDemo1()
         {
             return View();

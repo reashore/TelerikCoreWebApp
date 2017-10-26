@@ -41,9 +41,9 @@
                     .Name("vendorId")
                     .DataValueField("Value")
                     .DataTextField("Text")
-                    .Events(e => e.Change("onChange"))
+                    //.Events(e => e.Change("onChange"))
                     .BindTo(vendorSelectListItems)
-                    .Value(selectedVendorId)
+                    //.Value(selectedVendorId)
                     .HtmlAttributes(new { @class = "form-control" }))
         </div>
 
@@ -67,44 +67,47 @@
 @section Scripts 
 {
     <script>
-        var $vendorId;
-        var $ocgNumber;
-        var $managingQsArea;
-        var $primaryAddress;
+        (function ($) {
+            var $vendorId;
+            var $ocgNumber;
+            var $managingQsArea;
+            var $primaryAddress;
 
-        var success = function(result) {
-            var ocgNumber = result.ocgNumber;
-            var managingQsArea = result.managingQsArea;
-            var primaryAddress = result.primaryAddress;
+            var success = function(result) {
+                var ocgNumber = result.ocgNumber;
+                var managingQsArea = result.managingQsArea;
+                var primaryAddress = result.primaryAddress;
 
-            $ocgNumber.val(ocgNumber);
-            $managingQsArea.val(managingQsArea);
-            $primaryAddress.val(primaryAddress);
-        };
+                $ocgNumber.val(ocgNumber);
+                $managingQsArea.val(managingQsArea);
+                $primaryAddress.val(primaryAddress);
+            };
 
-        var error = function(xhr, status, error) {
-            console.log("error = " + error);
-        };
+            var error = function(xhr, status, err) {
+                console.log("error = " + err);
+            };
 
-        var onChange = function() {
-            var vendorId = $vendorId.val();
-            console.log("vendorid = " + vendorId);
-            var url = "http://localhost:13587/api/vendors/" + vendorId;
+            var onChange = function() {
+                var vendorId = $vendorId.val();
+                console.log("vendorid = " + vendorId);
+                var url = "http://localhost:13587/api/vendors/" + vendorId;
 
-            $.ajax({
-                url: url,
-                success: success,
-                error: error
+                $.ajax({
+                    url: url,
+                    success: success,
+                    error: error
+                });
+            };
+
+            $(document).ready(function() {
+                $vendorId = $("#vendorId");
+                $ocgNumber = $("#ocgNumber");
+                $managingQsArea = $("#managingQsArea");
+                $primaryAddress = $("#primaryAddress");
+
+                $vendorId.change(onChange);
+                $vendorId.data("kendoDropDownList");
             });
-        };
-
-        $(document).ready(function() {
-            $vendorId = $("#vendorId");
-            $ocgNumber = $("#ocgNumber");
-            $managingQsArea = $("#managingQsArea");
-            $primaryAddress = $("#primaryAddress");
-
-            $vendorId.data("kendoDropDownList");
-        });
+        })(jQuery);
     </script>
 }

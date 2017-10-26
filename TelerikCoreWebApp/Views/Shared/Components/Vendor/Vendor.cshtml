@@ -4,6 +4,7 @@
 
 @{
     Layout = "_MdiLayout";
+    //Layout = null;
 
     string selectedVendorId = Model.SelectedVendorId;
     List<SelectListItem> vendorSelectListItems = new List<SelectListItem>();
@@ -15,6 +16,8 @@
     string managingQsArea = selectedVendor.ManagingQsArea;
     string primaryAddress = selectedVendor.PrimaryAddress;
 
+    // The selected item in the <select> is set in the SelectListItems and 
+    // therefore does not need to be set in the control
     foreach (Vendor vendor in Model.VendorList)
     {
         int vendorId = vendor.VendorId;
@@ -41,11 +44,20 @@
                   .Name("vendorId")
                   .DataValueField("Value")
                   .DataTextField("Text")
-                  .Events(e => e.Change("onChange"))
+                  //.Events(e => e.Change("onChange"))
                   .BindTo(vendorSelectListItems)
-                  .Value(selectedVendorId)
+                  //.Value(selectedVendorId)
                   .HtmlAttributes(new {@class = "form-control"}))
         </div>
+
+        @*<div class="form-group">
+            @Html.Label("vendorId", "Vendor Name:")
+            
+            <select class="form-control" asp-for="vendorId2" asp-items="@vendorSelectListItems">
+                
+            </select>
+
+        </div>*@
 
         <div class="form-group">
             <label for="ocgNumber">OCG Number:</label>
@@ -71,47 +83,49 @@
 @section Scripts
 {
     <script>
-        var $vendorId;
-        var $ocgNumber;
-        var $managingQsArea;
-        var $primaryAddress;
+        (function ($) {
 
-        var success = function (result) {
-            //console.log("VendorViewComponent: success");
+            var $vendorId;
+            var $ocgNumber;
+            var $managingQsArea;
+            var $primaryAddress;
 
-            var ocgNumber = result.ocgNumber;
-            var managingQsArea = result.managingQsArea;
-            var primaryAddress = result.primaryAddress;
+            var onSuccess = function (result) {
+                var ocgNumber = result.ocgNumber;
+                var managingQsArea = result.managingQsArea;
+                var primaryAddress = result.primaryAddress;
 
-            $ocgNumber.val(ocgNumber);
-            $managingQsArea.val(managingQsArea);
-            $primaryAddress.val(primaryAddress);
-        };
+                $ocgNumber.val(ocgNumber);
+                $managingQsArea.val(managingQsArea);
+                $primaryAddress.val(primaryAddress);
+            };
 
-        var error = function(xhr, status, error) {
-            //console.log("VendorViewComponent: error");
-            console.log("error = " + error);
-        };
+            var onError = function (xhr, status, error) {
+                console.log("error = " + error);
+            };
 
-        var onChange = function() {
-            var vendorId = $vendorId.val();
-            //console.log("VendorViewComponent: vendorid = " + vendorId);
-            var url = "http://localhost:13587/api/vendors/" + vendorId;
+            var onChange = function () {
+                var vendorId = $vendorId.val();
+                //console.log("VendorViewComponent: vendorid = " + vendorId);
+                var url = "http://localhost:13587/api/vendors/" + vendorId;
 
-            $.ajax({
-                url: url,
-                success: success,
-                error: error
+                $.ajax({
+                    url: url,
+                    success: onSuccess,
+                    error: onError
+                });
+            };
+
+            $(document).ready(function() {
+                $vendorId = $("#vendorId");
+                $ocgNumber = $("#ocgNumber");
+                $managingQsArea = $("#managingQsArea");
+                $primaryAddress = $("#primaryAddress");
+
+                $vendorId.change(onChange);
+                $vendorId.data("kendoDropDownList");
             });
-        };
 
-        $(document).ready(function() {
-            $vendorId = $("#vendorId");
-            $ocgNumber = $("#ocgNumber");
-            $managingQsArea = $("#managingQsArea");
-            $primaryAddress = $("#primaryAddress");
-
-            $vendorId.data("kendoDropDownList");
-        });
+        })(jQuery);
     </script>
 }
